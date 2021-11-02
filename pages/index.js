@@ -11,7 +11,7 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState([]);
   const [favMovies, setFavMovies] = useState(new Set());
   const [favSeries, setFavSeries] = useState(new Set());
-  const [RecommendationsView, setRecommendationsView] = useState(false);
+  const [RecommendationsView, setRecommendationsView] = useState(false); //True === RecommendationsView && False === SearchView
   const [contentType, setContentType] = useState(true); //True === Movies && False === Series
   const [searchQuery, setSearchQuery] = useState(' ');
   const [movieRecommendations, setMovieRecommendations] = useState([]);
@@ -47,13 +47,17 @@ export default function Home() {
     const array = Array.from(arr);
     const ids = [];
 
+    const favArray = Array.from(contentType ? favMovies : favSeries);
+    const favIds = favArray.map((x) => x.id);
+
     const noDuplicates = array.map((x) => {
-      if (x && !ids.includes(x.id)) {
+      if (x && !ids.includes(x.id) && !favIds.includes(x.id)) {
         ids.push(x.id);
         return x;
       }
     });
     const noUndefined = noDuplicates.filter((x) => x != undefined);
+
     return noUndefined;
   };
 
@@ -91,8 +95,26 @@ export default function Home() {
         const uniqueAll = uniqueMovies(all);
         const shuffled = shuffle(uniqueAll);
         setMovieRecommendations(new Set(shuffled));
-      }, 1000);
-    }
+      }, 500);
+      //GENERATE SERIES
+    } else if (!contentType && favSeries.size !== 0) {
+      const similar = [];
+      const recommended = [];
+      Array.from(favSeries).map(async (serie) => {
+        similar.push((await api.fetchSimilarSerie(serie.id)).results);
+        recommended.push(
+          (await api.fetchSerieRecommendations(serie.id)).results
+        );
+      });
+      setTimeout(() => {
+        const spreadSimilar = similar[0].concat(similar[1]);
+        const spreadRecommended = recommended[0].concat(recommended[1]);
+        const all = [...spreadRecommended, ...spreadSimilar];
+        const uniqueAll = uniqueMovies(all);
+        const shuffled = shuffle(uniqueAll);
+        setSeriesRecommendations(new Set(shuffled));
+      }, 500);
+    } else return alert('Select Movies or Series');
 
     setRecommendationsView(true);
   };
@@ -106,6 +128,8 @@ export default function Home() {
           onChange={fetchSearch}
           searchQuery={searchQuery}
           toggleContent={toggleContent}
+          generateRecommendations={generateRecommendations}
+          contentType={contentType}
         />
       )}
 
@@ -116,12 +140,6 @@ export default function Home() {
           contentType={contentType}
         />
       )}
-
-      {/*TEMPORARY BUTTON */}
-      {!RecommendationsView && (
-        <button onClick={generateRecommendations}>Results</button>
-      )}
-      {/*TEMPORARY BUTTON */}
 
       {!RecommendationsView && searchResults && (
         <SearchResults
@@ -136,6 +154,8 @@ export default function Home() {
         <Recommendations
           setRecommendationsView={setRecommendationsView}
           movieRecommendations={movieRecommendations}
+          seriesRecommendations={seriesRecommendations}
+          contentType={contentType}
         />
       )}
     </>

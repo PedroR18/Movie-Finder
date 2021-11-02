@@ -71,7 +71,7 @@ const apiMethods = {
     return await (await fetch(endpoint)).json();
   },
   fetchSerieCredits: async (serieId) => {
-    const endpoint = `${API_URL}serie/${serieId}/credits?api_key=${API_KEY}`;
+    const endpoint = `${API_URL}tv/${serieId}/credits?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   fetchPersonCredits: async (personId) => {
@@ -84,7 +84,7 @@ const apiMethods = {
     return await (await fetch(endpoint)).json();
   },
   fetchSerieRecommendations: async (serieId) => {
-    const endpoint = `${API_URL}serie/${serieId}/recommendations?api_key=${API_KEY}`;
+    const endpoint = `${API_URL}tv/${serieId}/recommendations?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   //SIMILAR
@@ -93,7 +93,7 @@ const apiMethods = {
     return await (await fetch(endpoint)).json();
   },
   fetchSimilarSerie: async (serieId) => {
-    const endpoint = `${API_URL}serie/${serieId}/similar?api_key=${API_KEY}`;
+    const endpoint = `${API_URL}tv/${serieId}/similar?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   //VIDEOS
@@ -102,7 +102,7 @@ const apiMethods = {
     return await (await fetch(endpoint)).json();
   },
   fetchSerieVideos: async (serieId) => {
-    const endpoint = `${API_URL}serie/${serieId}/videos?api_key=${API_KEY}`;
+    const endpoint = `${API_URL}tv/${serieId}/videos?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
 };
