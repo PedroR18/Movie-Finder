@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FavContent from '../components/FavContent';
+import FixedNav from '../components/FixedNav';
 import Recommendations from '../components/Recommendations';
 import Search from '../components/Search';
 import SearchResults from '../components/SearchResults';
@@ -128,7 +129,6 @@ export default function Home() {
           onChange={fetchSearch}
           searchQuery={searchQuery}
           toggleContent={toggleContent}
-          generateRecommendations={generateRecommendations}
           contentType={contentType}
         />
       )}
@@ -146,6 +146,10 @@ export default function Home() {
           searchResults={searchResults}
           addFavContent={addFavContent}
         />
+      )}
+
+      {!RecommendationsView && (favMovies.size != 0 || favSeries.size != 0) && (
+        <FixedNav generateRecommendations={generateRecommendations} />
       )}
 
       {/*---------------RECOMMENDATIONS SCREEN---------------*/}

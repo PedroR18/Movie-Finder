@@ -1,0 +1,11 @@
+.results {
+  position: fixed;
+  left: 50%;
+  top: 90%;
+}
+
+.fav {
+  position: fixed;
+  left: 90%;
+  top: 90%;
+}

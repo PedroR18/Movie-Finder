@@ -2,7 +2,7 @@ import styles from '../styles/search.module.css';
 export default function Search(props) {
   return (
     <div className={styles.container}>
-      <div className={styles.switchButton}>
+      <div className={styles.switchsContainer}>
         <button
           className={
             props.contentType ? styles.activeMoviesButton : styles.moviesButton
@@ -20,13 +20,13 @@ export default function Search(props) {
           TV Series
         </button>
       </div>
-      <input
-        onChange={props.onChange}
-        value={props.searchQuery}
-        className={styles.searchBar}
-      />
-
-      <button onClick={props.generateRecommendations}>Results</button>
+      <div className={styles.searchContainer}>
+        <input
+          onChange={props.onChange}
+          value={props.searchQuery}
+          className={styles.searchBar}
+        />
+      </div>
     </div>
   );
 }
