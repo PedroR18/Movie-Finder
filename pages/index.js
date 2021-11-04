@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import FavContent from '../components/FavContent';
 import FixedNav from '../components/FixedNav';
 import Recommendations from '../components/Recommendations';
 import Search from '../components/Search';
@@ -17,6 +16,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState(' ');
   const [movieRecommendations, setMovieRecommendations] = useState([]);
   const [seriesRecommendations, setSeriesRecommendations] = useState(new Set());
+  const [favModalVisibility, setFavModalVisibility] = useState(false);
 
   //FUNCTIONS
   const fetchSearch = async (event) => {
@@ -29,13 +29,29 @@ export default function Home() {
     }
     setSearchResults(searchTerm.results);
   };
-
-  const addFavContent = (content) => {
+  console.log(favMovies);
+  const toggleFavContent = (content) => {
     if (content.release_date) {
-      setFavMovies(new Set([...favMovies, content]));
+      if (!Array.from(favMovies).includes(content)) {
+        setFavMovies(new Set([...favMovies, content]));
+        setSearchQuery('');
+      } else {
+        const newList = Array.from(favMovies).filter(
+          (i) => i.id !== content.id
+        );
+        setFavMovies(new Set([...newList]));
+      }
     } else if (content.first_air_date) {
-      setFavSeries(new Set([...favSeries, content]));
-    } else console.log('Invalid Media Type');
+      if (!Array.from(favSeries).includes(content)) {
+        setFavSeries(new Set([...favSeries, content]));
+        setSearchQuery('');
+      } else {
+        const newList = Array.from(favSeries).filter(
+          (i) => i.id !== content.id
+        );
+        setFavSeries(new Set([...newList]));
+      }
+    } else console.log('Invalid Media Type'); //CHANGE TO TOAST!!
   };
 
   const toggleContent = (boolean) => {
@@ -80,7 +96,7 @@ export default function Home() {
 
   const generateRecommendations = () => {
     //GENERATE MOVIES
-    if (contentType && favMovies.size !== 0) {
+    if (contentType && favMovies.size !== 0 && favMovies.length !== 0) {
       const similar = [];
       const recommended = [];
       Array.from(favMovies).map(async (movie) => {
@@ -98,7 +114,7 @@ export default function Home() {
         setMovieRecommendations(new Set(shuffled));
       }, 500);
       //GENERATE SERIES
-    } else if (!contentType && favSeries.size !== 0) {
+    } else if (!contentType && favSeries.size !== 0 && favSeries.length !== 0) {
       const similar = [];
       const recommended = [];
       Array.from(favSeries).map(async (serie) => {
@@ -115,7 +131,7 @@ export default function Home() {
         const shuffled = shuffle(uniqueAll);
         setSeriesRecommendations(new Set(shuffled));
       }, 500);
-    } else return alert('Select Movies or Series');
+    } else return alert('Select Movies or Series'); //CHANGE TO TOAST!!
 
     setRecommendationsView(true);
   };
@@ -133,23 +149,27 @@ export default function Home() {
         />
       )}
 
-      {!RecommendationsView && favMovies && (
-        <FavContent
-          favContent={contentType ? favMovies : favSeries}
-          setFavContent={contentType ? setFavMovies : setFavSeries}
-          contentType={contentType}
-        />
-      )}
-
       {!RecommendationsView && searchResults && (
         <SearchResults
           searchResults={searchResults}
-          addFavContent={addFavContent}
+          toggleFavContent={toggleFavContent}
+          favMovies={favMovies}
+          favSeries={favSeries}
         />
       )}
 
-      {!RecommendationsView && (favMovies.size != 0 || favSeries.size != 0) && (
-        <FixedNav generateRecommendations={generateRecommendations} />
+      {!RecommendationsView && (
+        <FixedNav
+          generateRecommendations={generateRecommendations}
+          contentType={contentType}
+          favMovies={favMovies}
+          favSeries={favSeries}
+          RecommendationsView={RecommendationsView}
+          setFavMovies={setFavMovies}
+          setFavSeries={setFavSeries}
+          favModalVisibility={favModalVisibility}
+          setFavModalVisibility={setFavModalVisibility}
+        />
       )}
 
       {/*---------------RECOMMENDATIONS SCREEN---------------*/}
