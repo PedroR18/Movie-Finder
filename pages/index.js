@@ -29,7 +29,6 @@ export default function Home() {
     }
     setSearchResults(searchTerm.results);
   };
-  console.log(favMovies);
   const toggleFavContent = (content) => {
     if (content.release_date) {
       if (!Array.from(favMovies).includes(content)) {

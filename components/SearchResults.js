@@ -6,7 +6,6 @@ export default function SearchResults(props) {
     Array.from(props.favSeries)
   );
 
-  console.log(allFav);
   return (
     <>
       <div className={'resultsGrid'}>
@@ -32,6 +31,7 @@ export default function SearchResults(props) {
                       width="780"
                       height="1170"
                     />
+                    <p>{content.vote_average || 1.0}</p>
                   </a>
                 </div>
               );
