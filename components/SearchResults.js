@@ -6,14 +6,6 @@ export default function SearchResults(props) {
     Array.from(props.favSeries)
   );
 
-  const checkEquality = (arr, obj) => {
-    for (const e of arr) {
-      if (e.id === obj.id) {
-        return true;
-      } else return false;
-    }
-  };
-
   return (
     <>
       <div className={'resultsGrid'}>
@@ -23,7 +15,7 @@ export default function SearchResults(props) {
               return (
                 <div
                   className={
-                    checkEquality(allFav, content)
+                    props.checkEquality(allFav, content)
                       ? 'resultsFav'
                       : 'resultsNotFav'
                   }

@@ -46,7 +46,7 @@ export default function Home() {
   };
   const toggleFavContent = (content) => {
     if (content.release_date) {
-      if (!Array.from(favMovies).includes(content)) {
+      if (!checkEquality(favMovies, content)) {
         setFavMovies(new Set([...favMovies, content]));
         setSearchQuery('');
       } else {
@@ -56,7 +56,7 @@ export default function Home() {
         setFavMovies(new Set([...newList]));
       }
     } else if (content.first_air_date) {
-      if (!Array.from(favSeries).includes(content)) {
+      if (!checkEquality(favSeries, content)) {
         setFavSeries(new Set([...favSeries, content]));
         setSearchQuery('');
       } else {
@@ -66,6 +66,14 @@ export default function Home() {
         setFavSeries(new Set([...newList]));
       }
     } else console.log('Invalid Media Type'); //CHANGE TO TOAST!!
+  };
+
+  const checkEquality = (arr, obj) => {
+    for (const e of arr) {
+      if (e.id === obj.id) {
+        return true;
+      }
+    }
   };
 
   const toggleContent = (boolean) => {
@@ -170,6 +178,7 @@ export default function Home() {
           toggleFavContent={toggleFavContent}
           favMovies={favMovies}
           favSeries={favSeries}
+          checkEquality={checkEquality}
         />
       )}
 
