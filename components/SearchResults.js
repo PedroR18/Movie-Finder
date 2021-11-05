@@ -19,7 +19,6 @@ export default function SearchResults(props) {
       <div className={'resultsGrid'}>
         {props.searchResults &&
           props.searchResults.map((content) => {
-            console.log(checkEquality(allFav, content));
             if (content.poster_path) {
               return (
                 <div
@@ -42,7 +41,11 @@ export default function SearchResults(props) {
                       width="780"
                       height="1170"
                     />
-                    <p>{content.vote_average || 1.0}</p>
+                    <p className={'rating'}>
+                      {String(content.vote_average).length === 1
+                        ? `${content.vote_average}.0`
+                        : content.vote_average || 1.0}
+                    </p>
                   </a>
                 </div>
               );
@@ -62,6 +65,7 @@ export default function SearchResults(props) {
             border-radius: 10px;
             margin: 5px;
             overflow: hidden;
+            position: relative;
           }
 
           .resultsNotFav {
@@ -69,10 +73,23 @@ export default function SearchResults(props) {
             border-radius: 10px;
             margin: 5px;
             overflow: hidden;
+            position: relative;
           }
 
           .resultsLink {
             cursor: pointer;
+          }
+
+          .rating {
+            position: absolute;
+            background-color: white;
+            z-index: 1;
+            padding: 8px 5px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+            margin: 0;
           }
         `}
       </style>
