@@ -6,16 +6,27 @@ export default function SearchResults(props) {
     Array.from(props.favSeries)
   );
 
+  const checkEquality = (arr, obj) => {
+    for (const e of arr) {
+      if (e.id === obj.id) {
+        return true;
+      } else return false;
+    }
+  };
+
   return (
     <>
       <div className={'resultsGrid'}>
         {props.searchResults &&
           props.searchResults.map((content) => {
+            console.log(checkEquality(allFav, content));
             if (content.poster_path) {
               return (
                 <div
                   className={
-                    allFav.includes(content) ? 'resultsFav' : 'resultsNotFav'
+                    checkEquality(allFav, content)
+                      ? 'resultsFav'
+                      : 'resultsNotFav'
                   }
                   key={content.id}
                 >

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FixedNav from '../components/FixedNav';
 import Recommendations from '../components/Recommendations';
 import Search from '../components/Search';
@@ -9,6 +9,7 @@ export default function Home() {
   //STATES
 
   const [searchResults, setSearchResults] = useState([]);
+  const [popularResults, setPopularResults] = useState([]);
   const [favMovies, setFavMovies] = useState(new Set());
   const [favSeries, setFavSeries] = useState(new Set());
   const [RecommendationsView, setRecommendationsView] = useState(false); //True === RecommendationsView && False === SearchView
@@ -19,6 +20,20 @@ export default function Home() {
   const [favModalVisibility, setFavModalVisibility] = useState(false);
 
   //FUNCTIONS
+
+  useEffect(() => {
+    const fetchPopular = async () => {
+      let list;
+      if (contentType) {
+        list = await api.fetchPopularMovies();
+      } else {
+        list = await api.fetchPopularSeries();
+      }
+      setPopularResults([...list.results]);
+    };
+    fetchPopular();
+  }, [contentType]);
+
   const fetchSearch = async (event) => {
     setSearchQuery(event.target.value);
     let searchTerm;
@@ -134,7 +149,6 @@ export default function Home() {
 
     setRecommendationsView(true);
   };
-
   return (
     <>
       {/*---------------SEARCH SCREEN---------------*/}
@@ -150,7 +164,9 @@ export default function Home() {
 
       {!RecommendationsView && searchResults && (
         <SearchResults
-          searchResults={searchResults}
+          searchResults={
+            searchResults.length !== 0 ? searchResults : popularResults
+          }
           toggleFavContent={toggleFavContent}
           favMovies={favMovies}
           favSeries={favSeries}
