@@ -1,0 +1,43 @@
+const utilities = {
+  checkEquality: (arr, obj) => {
+    for (const e of arr) {
+      if (e.id === obj.id) {
+        return true;
+      }
+    }
+  },
+  unique: (arr) => {
+    const array = Array.from(arr);
+    const ids = [];
+
+    const favArray = Array.from(contentType ? favMovies : favSeries);
+    const favIds = favArray.map((x) => x.id);
+
+    const noDuplicates = array.map((x) => {
+      if (x && !ids.includes(x.id) && !favIds.includes(x.id)) {
+        ids.push(x.id);
+        return x;
+      }
+    });
+    const noUndefined = noDuplicates.filter((x) => x != undefined);
+
+    return noUndefined;
+  },
+  shuffle: (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+    return array;
+  },
+};
+
+export default utilities;

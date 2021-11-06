@@ -1,3 +1,5 @@
+import MovieCard from '../components/MovieCard';
+
 export default function Recommendations({
   movieRecommendations,
   setRecommendationsView,
@@ -11,19 +13,27 @@ export default function Recommendations({
     <>
       <h1>Recommendations</h1>
       <button onClick={() => setRecommendationsView(false)}>Go Back</button>
-      <ul>
-        {(recommendations.length === 0 || recommendations.size === 0) && (
-          <p>Loading...</p>
-        )}
+
+      {(recommendations.length === 0 || recommendations.size === 0) && (
+        <p>Loading...</p>
+      )}
+      <div className={'resultsGrid'}>
         {recommendations &&
           Array.from(recommendations).map((content) => {
-            return (
-              <li key={content.id}>
-                <p>{content.title || content.name}</p>
-              </li>
-            );
+            if (content.poster_path) {
+              return <MovieCard content={content} className={'results'} />;
+            }
           })}
-      </ul>
+      </div>
+      <style jsx>
+        {`
+          .resultsGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+          }
+        `}
+      </style>
     </>
   );
 }

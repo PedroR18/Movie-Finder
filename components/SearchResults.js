@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import { IMG_LOADER } from '../config/config';
+import MovieCard from './MovieCard';
 
 export default function SearchResults(props) {
   const allFav = Array.from(props.favMovies).concat(
@@ -25,19 +24,7 @@ export default function SearchResults(props) {
                     className={'resultsLink'}
                     onClick={() => props.toggleFavContent(content)}
                   >
-                    <Image
-                      loader={IMG_LOADER}
-                      src={`${String(content.poster_path)}`}
-                      alt="Movie Poster"
-                      layout="responsive"
-                      width="780"
-                      height="1170"
-                    />
-                    <p className={'rating'}>
-                      {String(content.vote_average).length === 1
-                        ? `${content.vote_average}.0`
-                        : content.vote_average || 1.0}
-                    </p>
+                    <MovieCard content={content} />
                   </a>
                 </div>
               );

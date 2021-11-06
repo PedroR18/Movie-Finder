@@ -4,6 +4,7 @@ import Recommendations from '../components/Recommendations';
 import Search from '../components/Search';
 import SearchResults from '../components/SearchResults';
 import api from '../config/api';
+import utilities from '../config/utilities';
 
 export default function Home() {
   //STATES
@@ -20,7 +21,6 @@ export default function Home() {
   const [favModalVisibility, setFavModalVisibility] = useState(false);
 
   //FUNCTIONS
-
   useEffect(() => {
     const fetchPopular = async () => {
       let list;
@@ -44,9 +44,10 @@ export default function Home() {
     }
     setSearchResults(searchTerm.results);
   };
+
   const toggleFavContent = (content) => {
     if (content.release_date) {
-      if (!checkEquality(favMovies, content)) {
+      if (!utilities.checkEquality(favMovies, content)) {
         setFavMovies(new Set([...favMovies, content]));
         setSearchQuery('');
       } else {
@@ -56,7 +57,7 @@ export default function Home() {
         setFavMovies(new Set([...newList]));
       }
     } else if (content.first_air_date) {
-      if (!checkEquality(favSeries, content)) {
+      if (!utilities.checkEquality(favSeries, content)) {
         setFavSeries(new Set([...favSeries, content]));
         setSearchQuery('');
       } else {
@@ -68,52 +69,10 @@ export default function Home() {
     } else console.log('Invalid Media Type'); //CHANGE TO TOAST!!
   };
 
-  const checkEquality = (arr, obj) => {
-    for (const e of arr) {
-      if (e.id === obj.id) {
-        return true;
-      }
-    }
-  };
-
   const toggleContent = (boolean) => {
     setContentType(boolean);
     setSearchQuery('');
     setSearchResults([]);
-  };
-
-  const uniqueMovies = (arr) => {
-    const array = Array.from(arr);
-    const ids = [];
-
-    const favArray = Array.from(contentType ? favMovies : favSeries);
-    const favIds = favArray.map((x) => x.id);
-
-    const noDuplicates = array.map((x) => {
-      if (x && !ids.includes(x.id) && !favIds.includes(x.id)) {
-        ids.push(x.id);
-        return x;
-      }
-    });
-    const noUndefined = noDuplicates.filter((x) => x != undefined);
-
-    return noUndefined;
-  };
-
-  const shuffle = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
-
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-    return array;
   };
 
   const generateRecommendations = () => {
@@ -131,8 +90,8 @@ export default function Home() {
         const spreadSimilar = similar[0].concat(similar[1]);
         const spreadRecommended = recommended[0].concat(recommended[1]);
         const all = [...spreadRecommended, ...spreadSimilar];
-        const uniqueAll = uniqueMovies(all);
-        const shuffled = shuffle(uniqueAll);
+        const uniqueAll = utilities.unique(all);
+        const shuffled = utilities.shuffle(uniqueAll);
         setMovieRecommendations(new Set(shuffled));
       }, 500);
       //GENERATE SERIES
@@ -149,8 +108,8 @@ export default function Home() {
         const spreadSimilar = similar[0].concat(similar[1]);
         const spreadRecommended = recommended[0].concat(recommended[1]);
         const all = [...spreadRecommended, ...spreadSimilar];
-        const uniqueAll = uniqueMovies(all);
-        const shuffled = shuffle(uniqueAll);
+        const uniqueAll = utilities.unique(all);
+        const shuffled = utilities.shuffle(uniqueAll);
         setSeriesRecommendations(new Set(shuffled));
       }, 500);
     } else return alert('Select Movies or Series'); //CHANGE TO TOAST!!
@@ -178,7 +137,7 @@ export default function Home() {
           toggleFavContent={toggleFavContent}
           favMovies={favMovies}
           favSeries={favSeries}
-          checkEquality={checkEquality}
+          checkEquality={utilities.checkEquality}
         />
       )}
 
