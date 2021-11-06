@@ -92,8 +92,6 @@ export default function MovieDetails({ id, contentType }) {
         />
       )}
       {!video && <p>No Video Avaliable</p>}
-
-      <style jsx>{``}</style>
     </>
   );
 }
