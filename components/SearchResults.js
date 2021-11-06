@@ -41,19 +41,18 @@ export default function SearchResults({
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
+            margin: 10px 0;
           }
 
           .resultsFav {
-            border: 5px solid green;
-            border-radius: 10px;
+            border-bottom: 5px solid green;
+
             margin: 5px;
             overflow: hidden;
             position: relative;
           }
 
           .resultsNotFav {
-            border: 5px solid red;
-            border-radius: 10px;
             margin: 5px;
             overflow: hidden;
             position: relative;

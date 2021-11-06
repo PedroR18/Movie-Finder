@@ -28,8 +28,12 @@ export default function Search(props) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background: rgba(255, 255, 255, 0.35);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
           border-radius: 10px;
-          background-color: white;
+          border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .searchContainer {
@@ -49,36 +53,30 @@ export default function Search(props) {
         }
 
         .switchContainer button:nth-of-type(1) {
-          border: none;
-          background-color: grey;
           width: 50%;
           height: 100%;
           padding: 0px;
+          border: none;
+          background: rgba(40, 40, 40, 0.35);
           border: 1px solid transparent;
           border-top-left-radius: 10px;
-          border-bottom-left-radius: 0px;
-          border-bottom-right-radius: 10px;
-          border-top-right-radius: 0px;
         }
 
         .switchContainer button:nth-of-type(2) {
           border: none;
-          background-color: grey;
           width: 50%;
           height: 100%;
           padding: 0px;
+          background: rgba(40, 40, 40, 0.35);
           border: 1px solid transparent;
           border-top-right-radius: 10px;
-          border-bottom-right-radius: 0px;
-          border-bottom-left-radius: 10px;
-          border-top-left-radius: 0px;
         }
 
         .activeMoviesButton {
-          background-color: white !important;
+          background: transparent !important;
         }
         .activeSeriesButton {
-          background-color: white !important;
+          background: transparent !important;
         }
 
         .searchBar {
