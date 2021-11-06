@@ -150,8 +150,8 @@ export default function FixedNav({
           border-radius: 10px;
           justify-content: center;
           align-items: center;
-          width: 300px;
-          height: 600px;
+          width: 70%;
+          height: 60%;
           padding: 10px;
           left: 50%;
           top: 50%;

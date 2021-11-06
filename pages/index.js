@@ -19,6 +19,7 @@ export default function Home() {
   const [movieRecommendations, setMovieRecommendations] = useState([]);
   const [seriesRecommendations, setSeriesRecommendations] = useState(new Set());
   const [favModalVisibility, setFavModalVisibility] = useState(false);
+  const [detailsModalVisibility, setDetailsModalVisibility] = useState(false);
 
   //FUNCTIONS
   useEffect(() => {
@@ -90,7 +91,12 @@ export default function Home() {
         const spreadSimilar = similar[0].concat(similar[1]);
         const spreadRecommended = recommended[0].concat(recommended[1]);
         const all = [...spreadRecommended, ...spreadSimilar];
-        const uniqueAll = utilities.unique(all);
+        const uniqueAll = utilities.unique(
+          all,
+          contentType,
+          favMovies,
+          favSeries
+        );
         const shuffled = utilities.shuffle(uniqueAll);
         setMovieRecommendations(new Set(shuffled));
       }, 500);
@@ -108,7 +114,12 @@ export default function Home() {
         const spreadSimilar = similar[0].concat(similar[1]);
         const spreadRecommended = recommended[0].concat(recommended[1]);
         const all = [...spreadRecommended, ...spreadSimilar];
-        const uniqueAll = utilities.unique(all);
+        const uniqueAll = utilities.unique(
+          all,
+          contentType,
+          favMovies,
+          favSeries
+        );
         const shuffled = utilities.shuffle(uniqueAll);
         setSeriesRecommendations(new Set(shuffled));
       }, 500);
@@ -118,8 +129,6 @@ export default function Home() {
   };
   return (
     <>
-      {/*---------------SEARCH SCREEN---------------*/}
-
       {!RecommendationsView && (
         <Search
           onChange={fetchSearch}
@@ -155,14 +164,14 @@ export default function Home() {
         />
       )}
 
-      {/*---------------RECOMMENDATIONS SCREEN---------------*/}
-
       {RecommendationsView && (
         <Recommendations
           setRecommendationsView={setRecommendationsView}
           movieRecommendations={movieRecommendations}
           seriesRecommendations={seriesRecommendations}
           contentType={contentType}
+          detailsModalVisibility={detailsModalVisibility}
+          setDetailsModalVisibility={setDetailsModalVisibility}
         />
       )}
     </>

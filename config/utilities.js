@@ -6,7 +6,7 @@ const utilities = {
       }
     }
   },
-  unique: (arr) => {
+  unique: (arr, contentType, favMovies, favSeries) => {
     const array = Array.from(arr);
     const ids = [];
 

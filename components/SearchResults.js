@@ -1,20 +1,24 @@
 import MovieCard from './MovieCard';
 
-export default function SearchResults(props) {
-  const allFav = Array.from(props.favMovies).concat(
-    Array.from(props.favSeries)
-  );
+export default function SearchResults({
+  favMovies,
+  favSeries,
+  searchResults,
+  checkEquality,
+  toggleFavContent,
+}) {
+  const allFav = Array.from(favMovies).concat(Array.from(favSeries));
 
   return (
     <>
       <div className={'resultsGrid'}>
-        {props.searchResults &&
-          props.searchResults.map((content) => {
+        {searchResults &&
+          searchResults.map((content) => {
             if (content.poster_path) {
               return (
                 <div
                   className={
-                    props.checkEquality(allFav, content)
+                    checkEquality(allFav, content)
                       ? 'resultsFav'
                       : 'resultsNotFav'
                   }
@@ -22,7 +26,7 @@ export default function SearchResults(props) {
                 >
                   <a
                     className={'resultsLink'}
-                    onClick={() => props.toggleFavContent(content)}
+                    onClick={() => toggleFavContent(content)}
                   >
                     <MovieCard content={content} />
                   </a>
@@ -57,18 +61,6 @@ export default function SearchResults(props) {
 
           .resultsLink {
             cursor: pointer;
-          }
-
-          .rating {
-            position: absolute;
-            background-color: white;
-            z-index: 1;
-            padding: 8px 5px;
-            border: 1px solid transparent;
-            border-radius: 50%;
-            top: 0;
-            right: 0;
-            margin: 0;
           }
         `}
       </style>

@@ -1,14 +1,44 @@
+import { useState } from 'react';
 import MovieCard from '../components/MovieCard';
+import MovieDetails from '../components/MovieDetails';
 
 export default function Recommendations({
   movieRecommendations,
   setRecommendationsView,
   contentType,
   seriesRecommendations,
+  detailsModalVisibility,
+  setDetailsModalVisibility,
 }) {
+  const [id, setId] = useState(0);
   const recommendations = contentType
     ? movieRecommendations
     : seriesRecommendations;
+
+  const toggleDetailsModalVisibility = () => {
+    setDetailsModalVisibility(!detailsModalVisibility);
+  };
+
+  const findId = (e) => {
+    const posterUrl = String(e.target.src).split('w780')[1];
+    const finalUrl = posterUrl.split('?')[0];
+    Array.from(recommendations).map((content) => {
+      if (content.poster_path === finalUrl) {
+        setId(content.id);
+      }
+    });
+  };
+
+  const handleModalVisibility = (e) => {
+    findId(e);
+    toggleDetailsModalVisibility();
+  };
+
+  const hideModal = () => {
+    toggleDetailsModalVisibility(false);
+    setId(0);
+  };
+
   return (
     <>
       <h1>Recommendations</h1>
@@ -21,9 +51,36 @@ export default function Recommendations({
         {recommendations &&
           Array.from(recommendations).map((content) => {
             if (content.poster_path) {
-              return <MovieCard content={content} className={'results'} />;
+              return (
+                <>
+                  <a
+                    className={'resultsLink'}
+                    onClick={(e) => handleModalVisibility(e)}
+                  >
+                    <MovieCard content={content} className={'results'} />
+                  </a>
+                </>
+              );
             }
           })}
+      </div>
+      <div
+        className={'modalWrapper'}
+        onClick={(e) => {
+          if (e.target.className.includes('modalWrapper')) {
+            hideModal();
+          }
+        }}
+      >
+        <div
+          className={
+            detailsModalVisibility ? 'detailsModal' : 'detailsModal hidden'
+          }
+        >
+          {detailsModalVisibility && (
+            <MovieDetails id={id} contentType={contentType} />
+          )}
+        </div>
       </div>
       <style jsx>
         {`
@@ -31,6 +88,43 @@ export default function Recommendations({
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
+          }
+          .resultsLink {
+            cursor: pointer;
+          }
+          .detailsModal {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            height: 80%;
+            padding: 10px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+          }
+
+          .modalWrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: ${detailsModalVisibility ? 2 : -2};
+            height: ${typeof window !== 'undefined'
+              ? document.body.scrollHeight
+              : null}px;
+            width: 100%;
+          }
+
+          .hidden {
+            visibility: hidden;
           }
         `}
       </style>
