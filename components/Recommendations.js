@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MovieCard from '../components/MovieCard';
 import MovieDetails from '../components/MovieDetails';
 
@@ -10,6 +10,14 @@ export default function Recommendations({
   detailsModalVisibility,
   setDetailsModalVisibility,
 }) {
+  useEffect(() => {
+    if (detailsModalVisibility) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  });
+
   const [id, setId] = useState(0);
   const recommendations = contentType
     ? movieRecommendations
@@ -102,12 +110,15 @@ export default function Recommendations({
             justify-content: center;
             align-items: center;
             width: 90%;
+            max-width: 90%;
             height: 80%;
+            max-height: 80%;
             padding: 10px;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             z-index: 3;
+            overflow: auto;
           }
 
           .modalWrapper {
