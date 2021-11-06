@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { IMG_LOADER } from '../config/config';
+import Rating from './Rating';
 
 export default function MovieCard({ content, className }) {
   return (
@@ -12,11 +13,13 @@ export default function MovieCard({ content, className }) {
         width="780"
         height="1170"
       />
-      <p className={'rating'}>
-        {String(Math.round(content.vote_average * 10) / 10).length === 1
-          ? `${Math.round(content.vote_average * 10) / 10}.0`
-          : Math.round(content.vote_average * 10) / 10}
-      </p>
+      <Rating
+        rating={
+          String(Math.round(content.vote_average * 10) / 10).length === 1
+            ? `${Math.round(content.vote_average * 10) / 10}.0`
+            : Math.round(content.vote_average * 10) / 10
+        }
+      />
       <style jsx>
         {`
           .rating {
