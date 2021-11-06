@@ -35,6 +35,14 @@ export default function MovieCard({ content, className }) {
             overflow: hidden;
             position: relative;
           }
+
+          .${className} {
+            transition: 0.5s;
+          }
+
+          .${className}:hover {
+            transform: scale(1.03);
+          }
         `}
       </style>
     </div>

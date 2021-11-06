@@ -45,17 +45,24 @@ export default function SearchResults({
           }
 
           .resultsFav {
-            border-bottom: 5px solid green;
-
+            transition: 0.5s;
             margin: 5px;
             overflow: hidden;
             position: relative;
+            box-shadow: 0px 0px 18px rgb(20, 235, 20);
           }
 
           .resultsNotFav {
             margin: 5px;
             overflow: hidden;
             position: relative;
+            transition: 0.5s;
+            box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
+          }
+
+          .resultsFav:hover,
+          .resultsNotFav:hover {
+            transform: scale(1.03);
           }
 
           .resultsLink {
