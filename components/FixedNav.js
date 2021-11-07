@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import FavContent from './FavContent';
 
 export default function FixedNav({
@@ -10,6 +11,10 @@ export default function FixedNav({
   setFavSeries,
   favModalVisibility,
   setFavModalVisibility,
+  setMovieCounter,
+  setSerieCounter,
+  movieCounter,
+  serieCounter,
 }) {
   const toggleModalVisibility = () => {
     setFavModalVisibility(!favModalVisibility);
@@ -38,7 +43,16 @@ export default function FixedNav({
             ((favSeries.length && favSeries.length !== 0) ||
               (!!favSeries.size && favSeries.size !== 0)))) && (
           <div className={'favWrapper'}>
-            <a onClick={toggleModalVisibility}>Fav</a>
+            <div onClick={toggleModalVisibility} className={'favImage'}>
+              <Image
+                src={'/../public/Hamburger.svg'}
+                alt={'Fav'}
+                height="30px"
+                width="30px"
+                className={'image'}
+                objectFit="contain"
+              />
+            </div>
 
             {contentType &&
               favMovies &&
@@ -74,6 +88,11 @@ export default function FixedNav({
               contentType={contentType}
               setModalVisibility={setFavModalVisibility}
               favModalVisibility={favModalVisibility}
+              setMovieCounter={setMovieCounter}
+              setSerieCounter={setSerieCounter}
+              movieCounter={movieCounter}
+              serieCounter={serieCounter}
+              setFavModalVisibility={setFavModalVisibility}
             />
           )}
         </div>
@@ -90,13 +109,16 @@ export default function FixedNav({
           z-index: 1;
         }
         .resultsWrapper a {
-          background-color: white;
           padding: 15px 40px;
-          border: 1px solid transparent;
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
           box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
+          position: relative;
+          background: rgba(255, 255, 255, 0.35);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .favWrapper {
@@ -108,26 +130,29 @@ export default function FixedNav({
           z-index: 3;
         }
 
-        .favWrapper a {
-          background-color: white;
-          padding: 15px;
-          border: 1px solid transparent;
-          border-radius: 50px;
+        .favImage {
           cursor: pointer;
           position: relative;
           top: 40%;
           box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
+          height: 50px;
+          width: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50px;
+          background: rgba(255, 255, 255, 0.35);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .favWrapper span {
-          background-color: white;
-          padding: 5px 7px;
-          border: 1px solid transparent;
-          border-radius: 50px;
           cursor: pointer;
           position: relative;
-          top: 25%;
-          right: 4%;
+          top: -15px;
+          right: -30px;
+          color: white;
         }
 
         .modalWrapper {
@@ -147,16 +172,13 @@ export default function FixedNav({
           position: fixed;
           display: flex;
           flex-direction: column;
-          background-color: white;
-          border: 1px solid transparent;
-          border-radius: 10px;
-          justify-content: center;
+          justify-content: end;
           align-items: center;
           width: 70%;
-          height: 60%;
-          padding: 10px;
-          left: 50%;
-          top: 50%;
+          height: 50%;
+          padding: 15px 5px;
+          right: -30%;
+          top: 60%;
           transform: translate(-50%, -50%);
         }
 

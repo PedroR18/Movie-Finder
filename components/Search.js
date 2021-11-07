@@ -52,6 +52,10 @@ export default function Search(props) {
           align-items: center;
         }
 
+        .switchContainer button {
+          font-size: 2em;
+        }
+
         .switchContainer button:nth-of-type(1) {
           width: 50%;
           height: 100%;

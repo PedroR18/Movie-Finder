@@ -20,6 +20,8 @@ export default function Home() {
   const [seriesRecommendations, setSeriesRecommendations] = useState(new Set());
   const [favModalVisibility, setFavModalVisibility] = useState(false);
   const [detailsModalVisibility, setDetailsModalVisibility] = useState(false);
+  const [movieCounter, setMovieCounter] = useState(0);
+  const [serieCounter, setSerieCounter] = useState(0);
 
   //FUNCTIONS
   useEffect(() => {
@@ -53,23 +55,31 @@ export default function Home() {
   const toggleFavContent = (content) => {
     if (content.release_date) {
       if (!utilities.checkEquality(favMovies, content)) {
-        setFavMovies(new Set([...favMovies, content]));
-        setSearchQuery('');
+        if (movieCounter < 4) {
+          setFavMovies(new Set([...favMovies, content]));
+          setSearchQuery('');
+          setMovieCounter(movieCounter + 1);
+        } else alert('Too Many Movies'); //CHANGE TO TOAST!!
       } else {
         const newList = Array.from(favMovies).filter(
           (i) => i.id !== content.id
         );
         setFavMovies(new Set([...newList]));
+        setMovieCounter(movieCounter - 1);
       }
     } else if (content.first_air_date) {
       if (!utilities.checkEquality(favSeries, content)) {
-        setFavSeries(new Set([...favSeries, content]));
-        setSearchQuery('');
+        if (serieCounter < 4) {
+          setFavSeries(new Set([...favSeries, content]));
+          setSearchQuery('');
+          setSerieCounter(serieCounter + 1);
+        } else alert('Too Many Series'); //CHANGE TO TOAST!!
       } else {
         const newList = Array.from(favSeries).filter(
           (i) => i.id !== content.id
         );
         setFavSeries(new Set([...newList]));
+        setSerieCounter(serieCounter - 1);
       }
     } else console.log('Invalid Media Type'); //CHANGE TO TOAST!!
   };
@@ -166,6 +176,10 @@ export default function Home() {
           setFavSeries={setFavSeries}
           favModalVisibility={favModalVisibility}
           setFavModalVisibility={setFavModalVisibility}
+          setMovieCounter={setMovieCounter}
+          setSerieCounter={setSerieCounter}
+          movieCounter={movieCounter}
+          serieCounter={serieCounter}
         />
       )}
 
