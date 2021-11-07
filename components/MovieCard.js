@@ -3,6 +3,15 @@ import { IMG_LOADER } from '../config/config';
 import Rating from './Rating';
 
 export default function MovieCard({ content, className }) {
+  let rating;
+  if (String(Math.round(content.vote_average * 10) / 10).length === 1) {
+    if (String(Math.round(content.vote_average * 10) / 10) === '0') {
+      rating = '1.0';
+    } else rating = `${Math.round(content.vote_average * 10) / 10}.0`;
+  } else {
+    rating = Math.round(content.vote_average * 10) / 10;
+  }
+
   return (
     <div className={className} key={content.id}>
       <Image
@@ -13,13 +22,7 @@ export default function MovieCard({ content, className }) {
         width="780"
         height="1170"
       />
-      <Rating
-        rating={
-          String(Math.round(content.vote_average * 10) / 10).length === 1
-            ? `${Math.round(content.vote_average * 10) / 10}.0`
-            : Math.round(content.vote_average * 10) / 10
-        }
-      />
+      <Rating rating={rating} />
       <style jsx>
         {`
           .rating {

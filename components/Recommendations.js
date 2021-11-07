@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MovieCard from '../components/MovieCard';
 import MovieDetails from '../components/MovieDetails';
+import Loading from './Loading';
 
 export default function Recommendations({
   movieRecommendations,
@@ -9,6 +10,8 @@ export default function Recommendations({
   seriesRecommendations,
   detailsModalVisibility,
   setDetailsModalVisibility,
+  setSeriesRecommendations,
+  setMovieRecommendations,
 }) {
   useEffect(() => {
     if (detailsModalVisibility) {
@@ -47,13 +50,20 @@ export default function Recommendations({
     setId(0);
   };
 
+  const handleBack = () => {
+    setMovieRecommendations([]);
+    setSeriesRecommendations([]);
+    setRecommendationsView(false);
+  };
   return (
     <>
       <h1>Recommendations</h1>
-      <button onClick={() => setRecommendationsView(false)}>Go Back</button>
+      {recommendations.length != 0 && (
+        <button onClick={() => handleBack()}>Go Back</button>
+      )}
 
       {(recommendations.length === 0 || recommendations.size === 0) && (
-        <p>Loading...</p>
+        <Loading />
       )}
       <div className={'resultsGrid'}>
         {recommendations &&

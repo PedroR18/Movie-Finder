@@ -96,6 +96,7 @@ export default function FixedNav({
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
+          box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
         }
 
         .favWrapper {
@@ -115,6 +116,7 @@ export default function FixedNav({
           cursor: pointer;
           position: relative;
           top: 40%;
+          box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
         }
 
         .favWrapper span {

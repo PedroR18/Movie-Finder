@@ -15,7 +15,7 @@ export default function Home() {
   const [favSeries, setFavSeries] = useState(new Set());
   const [RecommendationsView, setRecommendationsView] = useState(false); //True === RecommendationsView && False === SearchView
   const [contentType, setContentType] = useState(true); //True === Movies && False === Series
-  const [searchQuery, setSearchQuery] = useState(' ');
+  const [searchQuery, setSearchQuery] = useState('');
   const [movieRecommendations, setMovieRecommendations] = useState([]);
   const [seriesRecommendations, setSeriesRecommendations] = useState(new Set());
   const [favModalVisibility, setFavModalVisibility] = useState(false);
@@ -37,13 +37,17 @@ export default function Home() {
 
   const fetchSearch = async (event) => {
     setSearchQuery(event.target.value);
-    let searchTerm;
-    if (contentType) {
-      searchTerm = await api.fetchMovies(event.target.value);
+    if (searchQuery.length <= 1) {
+      setSearchResults([]);
     } else {
-      searchTerm = await api.fetchSeries(event.target.value);
+      let searchTerm;
+      if (contentType) {
+        searchTerm = await api.fetchMovies(event.target.value);
+      } else {
+        searchTerm = await api.fetchSeries(event.target.value);
+      }
+      setSearchResults(searchTerm.results);
     }
-    setSearchResults(searchTerm.results);
   };
 
   const toggleFavContent = (content) => {
@@ -99,7 +103,7 @@ export default function Home() {
         );
         const shuffled = utilities.shuffle(uniqueAll);
         setMovieRecommendations(new Set(shuffled));
-      }, 500);
+      }, 1000);
       //GENERATE SERIES
     } else if (!contentType && favSeries.size !== 0 && favSeries.length !== 0) {
       const similar = [];
@@ -122,10 +126,11 @@ export default function Home() {
         );
         const shuffled = utilities.shuffle(uniqueAll);
         setSeriesRecommendations(new Set(shuffled));
-      }, 500);
+      }, 1000);
     } else return alert('Select Movies or Series'); //CHANGE TO TOAST!!
 
     setRecommendationsView(true);
+    window.scrollTo(0, 0);
   };
   return (
     <>
@@ -172,6 +177,8 @@ export default function Home() {
           contentType={contentType}
           detailsModalVisibility={detailsModalVisibility}
           setDetailsModalVisibility={setDetailsModalVisibility}
+          setMovieRecommendations={setMovieRecommendations}
+          setSeriesRecommendations={setSeriesRecommendations}
         />
       )}
     </>

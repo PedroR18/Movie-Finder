@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         }
 
         * {
-          font-family: Merriweather Sans;
+          font-family: 'Rubik';
           box-sizing: border-box;
         }
 
