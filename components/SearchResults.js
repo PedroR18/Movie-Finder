@@ -48,10 +48,10 @@ export default function SearchResults({
 
           .resultsFav {
             transition: 0.5s;
-            margin: 5px;
+            margin: 6px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0px 0px 18px rgb(20, 235, 20);
+            box-shadow: 0px 0px 18px rgb(150, 170, 150);
           }
 
           .resultsNotFav {

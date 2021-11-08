@@ -4,17 +4,13 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <style jsx global>{`
         body {
-          background: linear-gradient(
-            -45deg,
-            #ee7752,
-            #e73c7e,
-            #23a6d5,
-            #23d5ab
-          );
-          background-size: 700% 700%;
-          animation: gradient 10s ease infinite;
-          height: 100vh;
+          height: 100%;
           overflow: overlay;
+          background: radial-gradient(
+            ellipse at bottom,
+            #1b2735 0%,
+            #090a0f 100%
+          );
         }
 
         * {
@@ -23,17 +19,6 @@ function MyApp({ Component, pageProps }) {
           box-sizing: border-box;
         }
 
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
         ::-webkit-scrollbar {
           width: 0.43em;
           background: transparent;
@@ -45,7 +30,7 @@ function MyApp({ Component, pageProps }) {
           backdrop-filter: blur(6px);
           -webkit-backdrop-filter: blur(6px);
           border-radius: 10px;
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         ::-webkit-scrollbar-corner {
