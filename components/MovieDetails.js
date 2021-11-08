@@ -1,5 +1,10 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import api from '../config/api';
 import { IMG_LOADER } from '../config/config';
 
@@ -30,7 +35,7 @@ export default function MovieDetails({ id, contentType }) {
       } else {
         list = await api.fetchSerieCredits(id);
       }
-      let mainCast = Array.from(list.cast).slice(0, 10);
+      let mainCast = Array.from(list.cast).slice(0, 15); //MAX NUMBER OF ACTORS
       setCast(mainCast);
     };
     fetchDetails();
@@ -60,81 +65,144 @@ export default function MovieDetails({ id, contentType }) {
   return (
     <>
       <div className={'modal'}>
-        <Image
-          loader={IMG_LOADER}
-          src={`${String(content.poster_path)}`}
-          layout={'fixed'}
-          alt="Movie Poster"
-          width={780 / 6}
-          height={1170 / 6}
-        />
-        <p>{content.title || content.name}</p>
-        <div>
-          {content.genres &&
-            content.genres.map((genre) => <p key={genre.id}>{genre.name}</p>)}
-        </div>
-        {contentType && (
-          <a
-            href={`https://www.imdb.com/title/${content.imdb_id}/`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            IMDB
-          </a>
-        )}
-        <p>{content.overview}</p>
-        <p>
-          {contentType
-            ? String(content.release_date).substr(0, 4)
-            : String(content.first_air_date).substr(0, 4)}
-        </p>
-        <p>
-          {contentType
-            ? String(content.runtime)
-            : String(content.episode_run_time).substr(0, 2)}{' '}
-          min
-        </p>
-        <p>{content.vote_average}</p>
+        <div className={'mainContent'}>
+          <div className={'image'}>
+            <Image
+              loader={IMG_LOADER}
+              src={`${String(content.poster_path)}`}
+              layout={'fixed'}
+              alt="Movie Poster"
+              width={780 / 5}
+              height={1170 / 5}
+            />
+          </div>
+          <div className={'subContent'}>
+            <h2>{content.title || content.name}</h2>
 
-        {video && (
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="320"
-            height="180"
-            src={`http://www.youtube.com/embed/${video.key}`}
-            frameBorder="0"
-          />
-        )}
-        <div className={'actorsRow'}>
-          {cast &&
-            cast.map((actor) => {
-              if (actor.profile_path) {
-                return (
-                  <div key={actor.id} className={'actor'}>
-                    <Image
-                      loader={IMG_LOADER}
-                      src={`${String(actor.profile_path)}`}
-                      layout={'fixed'}
-                      alt="Actor"
-                      width={780 / 6}
-                      height={1170 / 6}
-                    />
-                    <p>{actor.name}</p>
-                  </div>
-                );
-              }
-            })}
+            <div className={'genres'}>
+              {content.genres &&
+                content.genres.map((genre) => (
+                  <p key={genre.id}>{genre.name}</p>
+                ))}
+            </div>
+            <div className={'info'}>
+              <p>
+                {contentType
+                  ? String(content.release_date).substr(0, 4)
+                  : String(content.first_air_date).substr(0, 4)}
+              </p>
+              <p>
+                {contentType
+                  ? String(content.runtime)
+                  : String(content.episode_run_time).substr(0, 2)}{' '}
+                min
+              </p>
+              <p>{content.vote_average}</p>
+            </div>
+            {contentType && (
+              <a
+                href={`https://www.imdb.com/title/${content.imdb_id}/`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  src="/../public/IMDB.svg"
+                  alt="Loading"
+                  height="50px"
+                  width="50px"
+                />
+              </a>
+            )}
+          </div>
         </div>
-        {!video && <p>No Video Avaliable</p>}
+        <p className={'synopsis'}>{content.overview}</p>
+        <div className={'video'}>
+          {video && (
+            <iframe
+              id="ytplayer"
+              width="320"
+              height="180"
+              src={`http://www.youtube.com/embed/${video.key}`}
+              frameBorder="0"
+              title={'trailer'}
+            />
+          )}
+          {!video && <p>No Video Avaliable</p>}
+        </div>
+        <div className={'actorsRow'}>
+          <Swiper
+            modules={[Pagination]}
+            slidesPerView={3}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            spaceBetween={10}
+            loop={true}
+          >
+            {cast &&
+              cast.map((actor) => {
+                if (actor.profile_path) {
+                  return (
+                    <SwiperSlide>
+                      <div key={actor.id} className={'actor'}>
+                        <div className={'actorImage'}>
+                          <Image
+                            loader={IMG_LOADER}
+                            src={`${String(actor.profile_path)}`}
+                            layout={'fixed'}
+                            alt="Actor"
+                            width={780 / 5.5}
+                            height={1170 / 5.5}
+                          />
+                        </div>
+                        <p className={'actorName'}>{actor.name}</p>
+                      </div>
+                    </SwiperSlide>
+                  );
+                }
+              })}
+          </Swiper>
+        </div>
       </div>
       <style jsx>{`
         .modal {
           height: 100%;
           width: 100%;
         }
-        .actorsRow {
+        .swiper {
           display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .mainContent {
+          display: flex;
+          justify-content: space-around;
+          margin-bottom: 20px;
+        }
+        .genres {
+          display: flex;
+          justify-content: space-around;
+        }
+        .info {
+          display: flex;
+          justify-content: space-around;
+        }
+
+        .synopsis {
+          margin-bottom: 20px;
+        }
+        .video {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .swiper-button-next {
+          color: red;
+        }
+
+        .actorName {
+          text-align: center;
+          margin-top: 10px;
         }
       `}</style>
     </>

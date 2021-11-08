@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
           background-size: 700% 700%;
           animation: gradient 10s ease infinite;
           height: 100vh;
+          overflow: overlay;
         }
 
         * {
@@ -31,6 +32,24 @@ function MyApp({ Component, pageProps }) {
           100% {
             background-position: 0% 50%;
           }
+        }
+        ::-webkit-scrollbar {
+          width: 0.43em;
+          background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.35);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        ::-webkit-scrollbar-corner {
+          background-color: #000000;
+          border-radius: 10px;
         }
       `}</style>
     </>
