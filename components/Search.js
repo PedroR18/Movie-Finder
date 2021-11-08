@@ -34,6 +34,8 @@ export default function Search(props) {
           -webkit-backdrop-filter: blur(6px);
           border-radius: 10px;
           border: 1px solid rgba(255, 255, 255, 0.18);
+          width: 100%;
+          margin: 0 auto;
         }
 
         .searchContainer {
@@ -84,7 +86,7 @@ export default function Search(props) {
         }
 
         .searchBar {
-          width: 80vw;
+          width: 90%;
           height: 50px;
           font-size: 2rem;
           padding: 8px 16px;
@@ -111,6 +113,12 @@ export default function Search(props) {
           border-bottom: 1px solid black;
           border-radius: 0;
           background-position: 100% center;
+        }
+
+        @media screen and (min-width: 600px) {
+          .searchWrapper {
+            width: 80%;
+          }
         }
       `}</style>
     </div>

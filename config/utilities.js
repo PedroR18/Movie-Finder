@@ -38,6 +38,18 @@ const utilities = {
     }
     return array;
   },
+  timeConvert: (n) => {
+    const num = n;
+    const hours = num / 60;
+    const rhours = Math.floor(hours);
+    const minutes = (hours - rhours) * 60;
+    const rminutes = Math.round(minutes);
+    if (!rhours) {
+      return `${rminutes}min`;
+    } else {
+      return `${rhours}h ${rminutes}min`;
+    }
+  },
 };
 
 export default utilities;

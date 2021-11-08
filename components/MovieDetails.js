@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import api from '../config/api';
 import { IMG_LOADER } from '../config/config';
+import utilities from '../config/utilities';
 import Rating from './Rating';
 
 export default function MovieDetails({ id, contentType }) {
@@ -82,17 +83,24 @@ export default function MovieDetails({ id, contentType }) {
             <div className={'subContent'}>
               <h2>{content.title || content.name}</h2>
               <div className={'info'}>
-                <p>
-                  {contentType
-                    ? String(content.release_date).substr(0, 4)
-                    : String(content.first_air_date).substr(0, 4)}
-                </p>
-                <p>
-                  {contentType
-                    ? String(content.runtime)
-                    : String(content.episode_run_time).substr(0, 2)}{' '}
-                  min
-                </p>
+                {contentType ? (
+                  <p>{String(content.release_date).substr(0, 4)}</p>
+                ) : (
+                  <p>
+                    {String(content.first_air_date).substr(0, 4)}-
+                    {String(content.last_air_date).substr(0, 4)}
+                  </p>
+                )}
+
+                {contentType && <p>{utilities.timeConvert(content.runtime)}</p>}
+
+                {!contentType && (
+                  <div>
+                    <p>Episodes: {content.number_of_episodes}</p>
+                    <p>Seasons: {content.number_of_seasons}</p>
+                  </div>
+                )}
+
                 <div className={'ratingWrapper'}>
                   <Rating rating={content.vote_average} />
                 </div>

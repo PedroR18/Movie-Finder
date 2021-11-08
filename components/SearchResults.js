@@ -11,29 +11,31 @@ export default function SearchResults({
 
   return (
     <>
-      <div className={'resultsGrid'}>
-        {searchResults &&
-          searchResults.map((content) => {
-            if (content.poster_path) {
-              return (
-                <div
-                  className={
-                    checkEquality(allFav, content)
-                      ? 'resultsFav'
-                      : 'resultsNotFav'
-                  }
-                  key={content.id}
-                >
-                  <a
-                    className={'resultsLink'}
-                    onClick={() => toggleFavContent(content)}
+      <div className={'resultsWrapper'}>
+        <div className={'resultsGrid'}>
+          {searchResults &&
+            searchResults.map((content) => {
+              if (content.poster_path) {
+                return (
+                  <div
+                    className={
+                      checkEquality(allFav, content)
+                        ? 'resultsFav'
+                        : 'resultsNotFav'
+                    }
+                    key={content.id}
                   >
-                    <MovieCard content={content} />
-                  </a>
-                </div>
-              );
-            }
-          })}
+                    <a
+                      className={'resultsLink'}
+                      onClick={() => toggleFavContent(content)}
+                    >
+                      <MovieCard content={content} />
+                    </a>
+                  </div>
+                );
+              }
+            })}
+        </div>
       </div>
       <style jsx>
         {`
@@ -67,6 +69,33 @@ export default function SearchResults({
 
           .resultsLink {
             cursor: pointer;
+          }
+
+          @media screen and (min-width: 600px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr;
+            }
+          }
+          @media screen and (min-width: 850px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+          }
+          @media screen and (min-width: 1000px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            }
+          }
+          @media screen and (min-width: 1100px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+              width: 80%;
+            }
+            .resultsWrapper {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
           }
         `}
       </style>

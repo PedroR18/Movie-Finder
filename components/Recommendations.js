@@ -57,58 +57,60 @@ export default function Recommendations({
   };
   return (
     <>
-      <h1>Recommendations</h1>
-      {recommendations.length != 0 && (
-        <button onClick={() => handleBack()}>Go Back</button>
-      )}
+      <div className={'recommendationsWrapper'}>
+        <h1>Recommendations</h1>
+        {recommendations.length != 0 && (
+          <button onClick={() => handleBack()}>Go Back</button>
+        )}
 
-      {(recommendations.length === 0 || recommendations.size === 0) && (
-        <div className={'loading'}>
-          <Loading />
+        {(recommendations.length === 0 || recommendations.size === 0) && (
+          <div className={'loading'}>
+            <Loading />
+          </div>
+        )}
+        <div className={'resultsGrid'}>
+          {recommendations &&
+            Array.from(recommendations).map((content) => {
+              if (content.poster_path) {
+                return (
+                  <>
+                    <a
+                      className={'resultsLink'}
+                      onClick={(e) => handleModalVisibility(e)}
+                    >
+                      <MovieCard content={content} className={'results'} />
+                    </a>
+                  </>
+                );
+              }
+            })}
         </div>
-      )}
-      <div className={'resultsGrid'}>
-        {recommendations &&
-          Array.from(recommendations).map((content) => {
-            if (content.poster_path) {
-              return (
-                <>
-                  <a
-                    className={'resultsLink'}
-                    onClick={(e) => handleModalVisibility(e)}
-                  >
-                    <MovieCard content={content} className={'results'} />
-                  </a>
-                </>
-              );
-            }
-          })}
-      </div>
-      <div
-        className={'modalWrapper '}
-        onClick={(e) => {
-          if (e.target.className.includes('modalBackground')) {
-            hideModal();
-          }
-        }}
-      >
         <div
-          className={detailsModalVisibility ? 'modalBackground' : 'hidden'}
-        ></div>
-        <div
-          className={
-            detailsModalVisibility ? 'detailsModal' : 'detailsModal hidden'
-          }
-          tabIndex="0"
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') {
-              setDetailsModalVisibility(false);
+          className={'modalWrapper '}
+          onClick={(e) => {
+            if (e.target.className.includes('modalBackground')) {
+              hideModal();
             }
           }}
         >
-          {detailsModalVisibility && (
-            <MovieDetails id={id} contentType={contentType} />
-          )}
+          <div
+            className={detailsModalVisibility ? 'modalBackground' : 'hidden'}
+          ></div>
+          <div
+            className={
+              detailsModalVisibility ? 'detailsModal' : 'detailsModal hidden'
+            }
+            tabIndex="0"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setDetailsModalVisibility(false);
+              }
+            }}
+          >
+            {detailsModalVisibility && (
+              <MovieDetails id={id} contentType={contentType} />
+            )}
+          </div>
         </div>
       </div>
       <style jsx>
@@ -176,6 +178,37 @@ export default function Recommendations({
           .loading {
             width: 50%;
             margin: auto;
+          }
+
+          @media screen and (min-width: 600px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr;
+            }
+          }
+
+          @media screen and (min-width: 850px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+          }
+
+          @media screen and (min-width: 1000px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            }
+          }
+
+          @media screen and (min-width: 1100px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+              width: 80%;
+            }
+            .recommendationsWrapper {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
           }
         `}
       </style>
