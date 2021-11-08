@@ -42,7 +42,15 @@ export default function FixedNav({
           (!contentType &&
             ((favSeries.length && favSeries.length !== 0) ||
               (!!favSeries.size && favSeries.size !== 0)))) && (
-          <div className={'favWrapper'}>
+          <div
+            className={'favWrapper'}
+            tabIndex="0"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setFavModalVisibility(false);
+              }
+            }}
+          >
             <div onClick={toggleModalVisibility} className={'favImage'}>
               <Image
                 src={'/../public/Hamburger.svg'}

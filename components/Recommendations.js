@@ -63,7 +63,9 @@ export default function Recommendations({
       )}
 
       {(recommendations.length === 0 || recommendations.size === 0) && (
-        <Loading />
+        <div className={'loading'}>
+          <Loading />
+        </div>
       )}
       <div className={'resultsGrid'}>
         {recommendations &&
@@ -83,17 +85,26 @@ export default function Recommendations({
           })}
       </div>
       <div
-        className={'modalWrapper'}
+        className={'modalWrapper '}
         onClick={(e) => {
-          if (e.target.className.includes('modalWrapper')) {
+          if (e.target.className.includes('modalBackground')) {
             hideModal();
           }
         }}
       >
         <div
+          className={detailsModalVisibility ? 'modalBackground' : 'hidden'}
+        ></div>
+        <div
           className={
             detailsModalVisibility ? 'detailsModal' : 'detailsModal hidden'
           }
+          tabIndex="0"
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              setDetailsModalVisibility(false);
+            }
+          }}
         >
           {detailsModalVisibility && (
             <MovieDetails id={id} contentType={contentType} />
@@ -114,21 +125,23 @@ export default function Recommendations({
             position: fixed;
             display: flex;
             flex-direction: column;
-            background-color: white;
-            border: 1px solid transparent;
-            border-radius: 10px;
             justify-content: center;
             align-items: center;
-            width: 90%;
-            max-width: 90%;
-            height: 80%;
-            max-height: 80%;
-            padding: 10px;
+            width: 93%;
+            max-width: 93%;
+            height: 85%;
+            max-height: 85%;
+            padding: 15px;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            z-index: 3;
+            z-index: 10;
             overflow: auto;
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius: 10px;
+            border: 8px solid transparent;
+            color: white;
           }
 
           .modalWrapper {
@@ -144,8 +157,25 @@ export default function Recommendations({
             width: 100%;
           }
 
+          .modalBackground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(30, 30, 30, 0.6);
+            height: 100%;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 0;
+          }
+
           .hidden {
             visibility: hidden;
+          }
+
+          .loading {
+            width: 50%;
+            margin: auto;
           }
         `}
       </style>

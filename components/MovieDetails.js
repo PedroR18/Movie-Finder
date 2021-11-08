@@ -62,106 +62,103 @@ export default function MovieDetails({ id, contentType }) {
   const [content, setContent] = useState([]);
   const [video, setVideo] = useState([]);
   const [cast, setCast] = useState([]);
+
   return (
     <>
-      <div className={'modal'}>
-        <div className={'mainContent'}>
-          <div className={'image'}>
-            <Image
-              loader={IMG_LOADER}
-              src={`${String(content.poster_path)}`}
-              layout={'fixed'}
-              alt="Movie Poster"
-              width={780 / 5}
-              height={1170 / 5}
-            />
-          </div>
-          <div className={'subContent'}>
-            <h2>{content.title || content.name}</h2>
+      {content.length !== 0 && (
+        <div className={'modal'}>
+          <div className={'mainContent'}>
+            <div className={'image'}>
+              <Image
+                loader={IMG_LOADER}
+                src={`${String(content.poster_path)}`}
+                layout={'fixed'}
+                alt="Movie Poster"
+                width={780 / 4}
+                height={1170 / 4}
+              />
+            </div>
+            <div className={'subContent'}>
+              <h2>{content.title || content.name}</h2>
+              <div className={'info'}>
+                <p>
+                  {contentType
+                    ? String(content.release_date).substr(0, 4)
+                    : String(content.first_air_date).substr(0, 4)}
+                </p>
+                <p>
+                  {contentType
+                    ? String(content.runtime)
+                    : String(content.episode_run_time).substr(0, 2)}{' '}
+                  min
+                </p>
+                <p>{content.vote_average}</p>
 
-            <div className={'genres'}>
-              {content.genres &&
-                content.genres.map((genre) => (
-                  <p key={genre.id}>{genre.name}</p>
-                ))}
+                {contentType && (
+                  <a
+                    href={`https://www.imdb.com/title/${content.imdb_id}/`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Image
+                      src="/../public/IMDB.svg"
+                      alt="Loading"
+                      height="50px"
+                      width="50px"
+                    />
+                  </a>
+                )}
+              </div>
             </div>
-            <div className={'info'}>
-              <p>
-                {contentType
-                  ? String(content.release_date).substr(0, 4)
-                  : String(content.first_air_date).substr(0, 4)}
-              </p>
-              <p>
-                {contentType
-                  ? String(content.runtime)
-                  : String(content.episode_run_time).substr(0, 2)}{' '}
-                min
-              </p>
-              <p>{content.vote_average}</p>
-            </div>
-            {contentType && (
-              <a
-                href={`https://www.imdb.com/title/${content.imdb_id}/`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Image
-                  src="/../public/IMDB.svg"
-                  alt="Loading"
-                  height="50px"
-                  width="50px"
-                />
-              </a>
+          </div>
+          <p className={'synopsis'}>{content.overview}</p>
+          <div className={'video'}>
+            {video && (
+              <iframe
+                id="ytplayer"
+                width="320"
+                height="180"
+                src={`http://www.youtube.com/embed/${video.key}`}
+                frameBorder="0"
+                title={'trailer'}
+              />
             )}
+            {!video && <p>No Video Avaliable</p>}
+          </div>
+          <div className={'actorsRow'}>
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={3}
+              pagination={{ clickable: true, dynamicBullets: true }}
+              spaceBetween={10}
+              loop={true}
+            >
+              {cast &&
+                cast.map((actor) => {
+                  if (actor.profile_path) {
+                    return (
+                      <SwiperSlide>
+                        <div key={actor.id} className={'actor'}>
+                          <div className={'actorImage'}>
+                            <Image
+                              loader={IMG_LOADER}
+                              src={`${String(actor.profile_path)}`}
+                              layout={'fixed'}
+                              alt="Actor"
+                              width={780 / 5.8}
+                              height={1170 / 5.8}
+                            />
+                          </div>
+                          <p className={'actorName'}>{actor.name}</p>
+                        </div>
+                      </SwiperSlide>
+                    );
+                  }
+                })}
+            </Swiper>
           </div>
         </div>
-        <p className={'synopsis'}>{content.overview}</p>
-        <div className={'video'}>
-          {video && (
-            <iframe
-              id="ytplayer"
-              width="320"
-              height="180"
-              src={`http://www.youtube.com/embed/${video.key}`}
-              frameBorder="0"
-              title={'trailer'}
-            />
-          )}
-          {!video && <p>No Video Avaliable</p>}
-        </div>
-        <div className={'actorsRow'}>
-          <Swiper
-            modules={[Pagination]}
-            slidesPerView={3}
-            pagination={{ clickable: true, dynamicBullets: true }}
-            spaceBetween={10}
-            loop={true}
-          >
-            {cast &&
-              cast.map((actor) => {
-                if (actor.profile_path) {
-                  return (
-                    <SwiperSlide>
-                      <div key={actor.id} className={'actor'}>
-                        <div className={'actorImage'}>
-                          <Image
-                            loader={IMG_LOADER}
-                            src={`${String(actor.profile_path)}`}
-                            layout={'fixed'}
-                            alt="Actor"
-                            width={780 / 5.5}
-                            height={1170 / 5.5}
-                          />
-                        </div>
-                        <p className={'actorName'}>{actor.name}</p>
-                      </div>
-                    </SwiperSlide>
-                  );
-                }
-              })}
-          </Swiper>
-        </div>
-      </div>
+      )}
       <style jsx>{`
         .modal {
           height: 100%;
@@ -177,11 +174,21 @@ export default function MovieDetails({ id, contentType }) {
           justify-content: space-around;
           margin-bottom: 20px;
         }
-        .genres {
+
+        .subContent {
+          margin-left: 20px;
+          text-align: center;
           display: flex;
+          flex-direction: column;
           justify-content: space-around;
         }
+
         .info {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .genres {
           display: flex;
           justify-content: space-around;
         }

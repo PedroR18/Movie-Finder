@@ -18,7 +18,8 @@ function MyApp({ Component, pageProps }) {
         }
 
         * {
-          font-family: 'Rubik';
+          font-family: 'Comfortaa';
+          font-weight: 700;
           box-sizing: border-box;
         }
 
@@ -39,7 +40,7 @@ function MyApp({ Component, pageProps }) {
         }
 
         ::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.35);
+          background: rgba(0, 0, 0, 0.3);
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
           backdrop-filter: blur(6px);
           -webkit-backdrop-filter: blur(6px);
