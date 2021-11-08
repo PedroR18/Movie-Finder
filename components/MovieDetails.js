@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import api from '../config/api';
 import { IMG_LOADER } from '../config/config';
+import Rating from './Rating';
 
 export default function MovieDetails({ id, contentType }) {
   useEffect(() => {
@@ -92,7 +93,9 @@ export default function MovieDetails({ id, contentType }) {
                     : String(content.episode_run_time).substr(0, 2)}{' '}
                   min
                 </p>
-                <p>{content.vote_average}</p>
+                <div className={'ratingWrapper'}>
+                  <Rating rating={content.vote_average} />
+                </div>
 
                 {contentType && (
                   <a
@@ -186,6 +189,9 @@ export default function MovieDetails({ id, contentType }) {
         .info {
           display: grid;
           grid-template-columns: 1fr 1fr;
+          justify-items: center;
+          align-items: center;
+          grid-gap: 5px;
         }
 
         .genres {
@@ -210,6 +216,11 @@ export default function MovieDetails({ id, contentType }) {
         .actorName {
           text-align: center;
           margin-top: 10px;
+        }
+
+        .ratingWrapper {
+          height: 50px;
+          width: 50px;
         }
       `}</style>
     </>

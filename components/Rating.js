@@ -32,31 +32,20 @@ export default function Rating({ rating }) {
   setTimeout(() => setRatingValue(rating), 100);
   return (
     <>
-      <div className={'ratingWrapper'}>
-        <CircularProgressbar
-          value={ratingValue}
-          maxValue={10}
-          text={`${rating}`}
-          background={true}
-          backgroundPadding={5}
-          styles={buildStyles({
-            textSize: '32px',
-            pathColor: color,
-            trailColor: 'rgba(215, 215, 215, 0.5)',
-            textColor: 'white',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          })}
-        />
-      </div>
-      <style jsx>{`
-        .ratingWrapper {
-          position: absolute;
-          height: 45px;
-          width: 45px;
-          top: 2px;
-          right: 2px;
-        }
-      `}</style>
+      <CircularProgressbar
+        value={ratingValue}
+        maxValue={10}
+        text={`${rating}`}
+        background={true}
+        backgroundPadding={5}
+        styles={buildStyles({
+          textSize: '32px',
+          pathColor: color,
+          trailColor: 'rgba(215, 215, 215, 0.5)',
+          textColor: 'white',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        })}
+      />
     </>
   );
 }

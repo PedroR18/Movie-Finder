@@ -22,7 +22,10 @@ export default function MovieCard({ content, className }) {
         width="780"
         height="1170"
       />
-      <Rating rating={rating} />
+      <div className={'ratingWrapper'}>
+        <Rating rating={rating} />
+      </div>
+
       <style jsx>
         {`
           .rating {
@@ -48,6 +51,13 @@ export default function MovieCard({ content, className }) {
 
           .${className}:hover {
             transform: scale(1.03);
+          }
+          .ratingWrapper {
+            position: absolute;
+            height: 45px;
+            width: 45px;
+            top: 2px;
+            right: 2px;
           }
         `}
       </style>
