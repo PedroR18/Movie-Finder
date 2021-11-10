@@ -142,7 +142,6 @@ export default function MovieDetails({ id, contentType }) {
               slidesPerView={3}
               pagination={{ clickable: true, dynamicBullets: true }}
               spaceBetween={10}
-              loop={true}
             >
               {cast &&
                 cast.map((actor) => {
