@@ -154,7 +154,7 @@ export default function Recommendations({
             right: 0;
             z-index: ${detailsModalVisibility ? 2 : -2};
             height: ${typeof window !== 'undefined'
-              ? document.body.scrollHeight
+              ? document.body.scrollHeight + 10
               : null}px;
             width: 100%;
           }
@@ -178,11 +178,15 @@ export default function Recommendations({
           .loading {
             width: 50%;
             margin: auto;
+            height: 100vh;
           }
 
           @media screen and (min-width: 600px) {
             .resultsGrid {
               grid-template-columns: 1fr 1fr 1fr;
+            }
+            .detailsModal {
+              width: 80%;
             }
           }
 
@@ -195,12 +199,6 @@ export default function Recommendations({
           @media screen and (min-width: 1000px) {
             .resultsGrid {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            }
-          }
-
-          @media screen and (min-width: 1100px) {
-            .resultsGrid {
-              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
               width: 80%;
             }
             .recommendationsWrapper {
@@ -208,6 +206,44 @@ export default function Recommendations({
               flex-direction: column;
               justify-content: center;
               align-items: center;
+            }
+            .detailsModal {
+              width: 70%;
+            }
+          }
+          @media screen and (min-width: 1400px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
+            .detailsModal {
+              width: 60%;
+            }
+          }
+
+          @media screen and (min-width: 1700px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
+            .detailsModal {
+              width: 50%;
+            }
+          }
+
+          @media screen and (min-width: 2000px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
+            .detailsModal {
+              width: 40%;
+            }
+          }
+
+          @media screen and (min-width: 2400px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
+            .detailsModal {
+              width: 30%;
             }
           }
         `}

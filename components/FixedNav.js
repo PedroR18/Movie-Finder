@@ -170,9 +170,11 @@ export default function FixedNav({
           bottom: 0;
           right: 0;
           z-index: ${favModalVisibility ? 2 : -2};
-          height: ${typeof window !== 'undefined'
-            ? document.body.scrollHeight
-            : null}px;
+          height: ${RecommendationsView
+            ? typeof window !== 'undefined'
+              ? `${document.body.scrollHeight}px`
+              : null
+            : '100vh'};
           width: 100%;
         }
 

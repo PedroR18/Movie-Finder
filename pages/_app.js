@@ -4,7 +4,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <style jsx global>{`
         body {
-          height: 100%;
+          height: 100vh;
           overflow: overlay;
           background: radial-gradient(
             ellipse at bottom,
@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
           font-family: 'Comfortaa';
           font-weight: 700;
           box-sizing: border-box;
+          color: white;
         }
 
         ::-webkit-scrollbar {

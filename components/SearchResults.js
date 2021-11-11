@@ -84,17 +84,24 @@ export default function SearchResults({
           @media screen and (min-width: 1000px) {
             .resultsGrid {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            }
-          }
-          @media screen and (min-width: 1100px) {
-            .resultsGrid {
-              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
               width: 80%;
             }
             .resultsWrapper {
               display: flex;
               justify-content: center;
               align-items: center;
+            }
+          }
+
+          @media screen and (min-width: 1400px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
+          }
+
+          @media screen and (min-width: 1700px) {
+            .resultsGrid {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             }
           }
         `}

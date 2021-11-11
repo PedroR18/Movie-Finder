@@ -82,6 +82,11 @@ export default function MovieDetails({ id, contentType }) {
             </div>
             <div className={'subContent'}>
               <h2>{content.title || content.name}</h2>
+              <div className={'genres'}>
+                {content.genres.map((genre) => (
+                  <p key={genre.id}>{genre.name}</p>
+                ))}
+              </div>
               <div className={'info'}>
                 {contentType ? (
                   <p>{String(content.release_date).substr(0, 4)}</p>
@@ -126,9 +131,8 @@ export default function MovieDetails({ id, contentType }) {
           <div className={'video'}>
             {video && (
               <iframe
+                className={'iframe'}
                 id="ytplayer"
-                width="320"
-                height="180"
                 src={`http://www.youtube.com/embed/${video.key}`}
                 frameBorder="0"
                 title={'trailer'}
@@ -142,6 +146,11 @@ export default function MovieDetails({ id, contentType }) {
               slidesPerView={3}
               pagination={{ clickable: true, dynamicBullets: true }}
               spaceBetween={10}
+              breakpoints={{
+                1000: {
+                  slidesPerView: 4,
+                },
+              }}
             >
               {cast &&
                 cast.map((actor) => {
@@ -153,7 +162,7 @@ export default function MovieDetails({ id, contentType }) {
                             <Image
                               loader={IMG_LOADER}
                               src={`${String(actor.profile_path)}`}
-                              layout={'fixed'}
+                              layout={'responsive'}
                               alt="Actor"
                               width={780 / 5.8}
                               height={1170 / 5.8}
@@ -172,7 +181,7 @@ export default function MovieDetails({ id, contentType }) {
       <style jsx>{`
         .modal {
           height: 100%;
-          width: 100%;
+          width: 90%;
         }
         .swiper {
           display: flex;
@@ -183,6 +192,13 @@ export default function MovieDetails({ id, contentType }) {
           display: flex;
           justify-content: space-around;
           margin-bottom: 20px;
+          width: 100%;
+        }
+
+        .genres {
+          display: flex;
+          justify-content: space-around;
+          width: 100%;
         }
 
         .subContent {
@@ -191,6 +207,7 @@ export default function MovieDetails({ id, contentType }) {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+          width: 50%;
         }
 
         .info {
@@ -214,6 +231,18 @@ export default function MovieDetails({ id, contentType }) {
           justify-content: center;
           align-items: center;
           margin-bottom: 20px;
+          position: relative;
+          overflow: hidden;
+          padding-top: 56.25%;
+        }
+
+        .iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
         }
 
         .swiper-button-next {
@@ -225,9 +254,25 @@ export default function MovieDetails({ id, contentType }) {
           margin-top: 10px;
         }
 
+        .actor {
+          height: 100%;
+          width: 100%;
+        }
+
+        .actorImage {
+          height: 100%;
+          width: 100%;
+        }
+
         .ratingWrapper {
           height: 50px;
           width: 50px;
+        }
+
+        @media screen and (min-width: 1000px) {
+          .swiper-container {
+            width: 100%;
+          }
         }
       `}</style>
     </>
