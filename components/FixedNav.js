@@ -31,7 +31,7 @@ export default function FixedNav({
               (!!favSeries.size && favSeries.size !== 0)))) && (
           <div className={'resultsWrapper'}>
             <a onClick={generateRecommendations} className={'results'}>
-              Results
+              🎬 Find Movies 🎬
             </a>
           </div>
         )}
@@ -124,9 +124,10 @@ export default function FixedNav({
           box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
           position: relative;
           background: rgba(255, 255, 255, 0.35);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          font-size: 1.4em;
         }
 
         .favWrapper {

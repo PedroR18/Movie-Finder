@@ -1,10 +1,18 @@
+import Head from 'next/head';
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <title>Movie Finder</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="shortcut icon" href="/static/favicon.ico" />
+      </Head>
+
       <Component {...pageProps} />
       <style jsx global>{`
         body {
-          height: 100vh;
+          height: 100%;
           overflow: overlay;
           background: radial-gradient(
             ellipse at bottom,
@@ -14,8 +22,8 @@ function MyApp({ Component, pageProps }) {
         }
 
         * {
-          font-family: 'Comfortaa';
-          font-weight: 700;
+          font-family: 'Fira Sans';
+          font-weight: 600;
           box-sizing: border-box;
           color: white;
         }

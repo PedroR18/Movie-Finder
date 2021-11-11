@@ -81,28 +81,26 @@ export default function MovieDetails({ id, contentType }) {
               />
             </div>
             <div className={'subContent'}>
-              <h2>{content.title || content.name}</h2>
-              <div className={'genres'}>
-                {content.genres.map((genre) => (
-                  <p key={genre.id}>{genre.name}</p>
-                ))}
-              </div>
+              <h1>{content.title || content.name}</h1>
+
               <div className={'info'}>
                 {contentType ? (
-                  <p>{String(content.release_date).substr(0, 4)}</p>
+                  <h3>{String(content.release_date).substr(0, 4)}</h3>
                 ) : (
-                  <p>
+                  <h3>
                     {String(content.first_air_date).substr(0, 4)}-
                     {String(content.last_air_date).substr(0, 4)}
-                  </p>
+                  </h3>
                 )}
 
-                {contentType && <p>{utilities.timeConvert(content.runtime)}</p>}
+                {contentType && (
+                  <h3>{utilities.timeConvert(content.runtime)}</h3>
+                )}
 
                 {!contentType && (
                   <div>
-                    <p>Episodes: {content.number_of_episodes}</p>
-                    <p>Seasons: {content.number_of_seasons}</p>
+                    <h3>Episodes: {content.number_of_episodes}</h3>
+                    <h3>Seasons: {content.number_of_seasons}</h3>
                   </div>
                 )}
 
@@ -115,6 +113,7 @@ export default function MovieDetails({ id, contentType }) {
                     href={`https://www.imdb.com/title/${content.imdb_id}/`}
                     target="_blank"
                     rel="noreferrer"
+                    className={'imdb'}
                   >
                     <Image
                       src="/../public/IMDB.svg"
@@ -124,6 +123,11 @@ export default function MovieDetails({ id, contentType }) {
                     />
                   </a>
                 )}
+              </div>
+              <div className={'genres'}>
+                {content.genres.map((genre) => (
+                  <p key={genre.id}>{genre.name}</p>
+                ))}
               </div>
             </div>
           </div>
@@ -199,6 +203,7 @@ export default function MovieDetails({ id, contentType }) {
           display: flex;
           justify-content: space-around;
           width: 100%;
+          font-size: 0.9em;
         }
 
         .subContent {
@@ -218,13 +223,9 @@ export default function MovieDetails({ id, contentType }) {
           grid-gap: 5px;
         }
 
-        .genres {
-          display: flex;
-          justify-content: space-around;
-        }
-
         .synopsis {
           margin-bottom: 20px;
+          font-weight: 500;
         }
         .video {
           display: flex;
@@ -267,6 +268,14 @@ export default function MovieDetails({ id, contentType }) {
         .ratingWrapper {
           height: 50px;
           width: 50px;
+        }
+
+        .imdb {
+          transition: transform 0.4s;
+        }
+
+        .imdb:hover {
+          transform: scale(1.1);
         }
 
         @media screen and (min-width: 1000px) {

@@ -28,12 +28,12 @@ export default function Search(props) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background: rgba(255, 255, 255, 0.35);
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
+          background: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 8px 32px 0 rgba(190, 190, 190, 0.1);
+          backdrop-filter: blur(3px);
+          -webkit-backdrop-filter: blur(3px);
           border-radius: 10px;
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           width: 100%;
           margin: 0 auto;
         }
@@ -56,6 +56,8 @@ export default function Search(props) {
 
         .switchContainer button {
           font-size: 2em;
+          letter-spacing: 0.2em;
+          font-weight: 600;
         }
 
         .switchContainer button:nth-of-type(1) {

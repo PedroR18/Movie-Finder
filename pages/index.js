@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import FixedNav from '../components/FixedNav';
 import Recommendations from '../components/Recommendations';
@@ -144,6 +145,7 @@ export default function Home() {
   };
   return (
     <>
+       
       {!RecommendationsView && (
         <Search
           onChange={fetchSearch}

@@ -58,7 +58,6 @@ export default function Recommendations({
   return (
     <>
       <div className={'recommendationsWrapper'}>
-        <h1>Recommendations</h1>
         {recommendations.length != 0 && (
           <button onClick={() => handleBack()}>Go Back</button>
         )}
@@ -176,9 +175,11 @@ export default function Recommendations({
           }
 
           .loading {
-            width: 50%;
-            margin: auto;
+            width: 100%;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
           @media screen and (min-width: 600px) {
