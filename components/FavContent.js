@@ -50,6 +50,7 @@ export default function FavContent({
         .favContent p {
           width: 50%;
           z-index: 5;
+          font-size: 0.8em;
         }
 
         .favContent button {
@@ -66,8 +67,8 @@ export default function FavContent({
         .favContent {
           background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
           border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          width: 200px;
-          height: 104px;
+          width: 150px;
+          height: 94px;
           animation: morph 3s linear infinite;
           transform-style: preserve-3d;
           outline: 1px solid transparent;

@@ -114,8 +114,8 @@ export default function FixedNav({
           z-index: -1;
           background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
           border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          width: 150px;
-          height: 80px;
+          width: 130px;
+          height: 70px;
           animation: morph 3s linear infinite;
           transform-style: preserve-3d;
           outline: 1px solid transparent;
@@ -154,8 +154,8 @@ export default function FixedNav({
           animation-delay: 400ms;
           opacity: 0.94;
           content: 'Search';
-          line-height: 80px;
-          text-indent: 50px;
+          line-height: 70px;
+          text-indent: 40px;
           font-family: 'Fira Sans';
           font-size: 1.2em;
         }
@@ -310,7 +310,8 @@ export default function FixedNav({
 
         @media screen and (min-width: 1200px) {
           .favModal {
-            right: 0;
+            right: -10%;
+            top: 40%;
           }
         }
 

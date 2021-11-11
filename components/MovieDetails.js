@@ -81,7 +81,7 @@ export default function MovieDetails({ id, contentType }) {
               />
             </div>
             <div className={'subContent'}>
-              <h1>{content.title || content.name}</h1>
+              <h1 className={'title'}>{content.title || content.name}</h1>
 
               <div className={'info'}>
                 {contentType ? (
@@ -206,6 +206,10 @@ export default function MovieDetails({ id, contentType }) {
           font-size: 0.9em;
         }
 
+        .title {
+          margin: 0.3em 0;
+        }
+
         .subContent {
           margin-left: 20px;
           text-align: center;
@@ -226,6 +230,9 @@ export default function MovieDetails({ id, contentType }) {
         .synopsis {
           margin-bottom: 20px;
           font-weight: 500;
+          text-align: justify;
+          text-justify: inter-word;
+          line-height: 1.5em;
         }
         .video {
           display: flex;
