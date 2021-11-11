@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }) {
 
         * {
           font-family: 'Fira Sans';
+          letter-spacing: 0.5px;
           font-weight: 600;
           box-sizing: border-box;
           color: white;

@@ -58,10 +58,6 @@ export default function Recommendations({
   return (
     <>
       <div className={'recommendationsWrapper'}>
-        {recommendations.length != 0 && (
-          <button onClick={() => handleBack()}>Go Back</button>
-        )}
-
         {(recommendations.length === 0 || recommendations.size === 0) && (
           <div className={'loading'}>
             <Loading />
@@ -111,6 +107,9 @@ export default function Recommendations({
             )}
           </div>
         </div>
+        {recommendations.length != 0 && (
+          <div className={'backButton'} onClick={() => handleBack()}></div>
+        )}
       </div>
       <style jsx>
         {`
@@ -118,6 +117,7 @@ export default function Recommendations({
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
+            margin-top: 40px;
           }
           .resultsLink {
             cursor: pointer;
@@ -180,6 +180,88 @@ export default function Recommendations({
             display: flex;
             justify-content: center;
             align-items: center;
+          }
+
+          .backButton {
+            background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
+            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+            width: 130px;
+            height: 74px;
+            animation: morph 3s linear infinite;
+            transform-style: preserve-3d;
+            outline: 1px solid transparent;
+            will-change: border-radius;
+            margin: 20px 0;
+            transition: ease-in 0.4s;
+            cursor: pointer;
+          }
+          .backButton:before,
+          .backButton:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+            box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+            will-change: border-radius, transform, opacity;
+            animation-delay: 200ms;
+            background-image: linear-gradient(
+              120deg,
+              rgba(0, 67, 255, 0.55) 0%,
+              rgba(0, 103, 255, 0.89) 100%
+            );
+          }
+
+          .backButton:before {
+            animation: morph 3s linear infinite;
+            opacity: 0.21;
+            animation-duration: 1.5s;
+          }
+
+          .backButton:after {
+            animation: morph 3s linear infinite;
+            animation-delay: 400ms;
+            opacity: 0.89;
+            content: 'Back';
+            line-height: 70px;
+            text-indent: 31px;
+            font-size: 1.4em;
+          }
+
+          .backButton:hover {
+            color: black;
+            font-size: 1.1em;
+            text-indent: 30px;
+          }
+
+          @keyframes morph {
+            0%,
+            100% {
+              border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+              transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+            }
+            34% {
+              border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+              transform: translate3d(0, 5px, 0) rotateZ(0.01deg);
+            }
+            50% {
+              opacity: 0.89;
+              transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+            }
+            67% {
+              border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+              transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+            }
+          }
+
+          @keyframes fadeIn {
+            100% {
+              transform: scale(1.03);
+              opacity: 0;
+            }
           }
 
           @media screen and (min-width: 600px) {

@@ -1,6 +1,8 @@
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import FixedNav from '../components/FixedNav';
+import Footer from '../components/Footer';
 import Recommendations from '../components/Recommendations';
 import Search from '../components/Search';
 import SearchResults from '../components/SearchResults';
@@ -60,7 +62,7 @@ export default function Home() {
           setFavMovies(new Set([...favMovies, content]));
           setSearchQuery('');
           setMovieCounter(movieCounter + 1);
-        } else alert('Too Many Movies'); //CHANGE TO TOAST!!
+        } else tooManyMovies();
       } else {
         const newList = Array.from(favMovies).filter(
           (i) => i.id !== content.id
@@ -74,7 +76,7 @@ export default function Home() {
           setFavSeries(new Set([...favSeries, content]));
           setSearchQuery('');
           setSerieCounter(serieCounter + 1);
-        } else alert('Too Many Series'); //CHANGE TO TOAST!!
+        } else tooManySeries();
       } else {
         const newList = Array.from(favSeries).filter(
           (i) => i.id !== content.id
@@ -82,7 +84,7 @@ export default function Home() {
         setFavSeries(new Set([...newList]));
         setSerieCounter(serieCounter - 1);
       }
-    } else console.log('Invalid Media Type'); //CHANGE TO TOAST!!
+    } else console.log('Invalid Media Type');
   };
 
   const toggleContent = (boolean) => {
@@ -138,14 +140,61 @@ export default function Home() {
         const shuffled = utilities.shuffle(uniqueAll);
         setSeriesRecommendations(new Set(shuffled));
       }, 1000);
-    } else return alert('Select Movies or Series'); //CHANGE TO TOAST!!
+    } else return selectContent();
 
     setRecommendationsView(true);
     window.scrollTo(0, 0);
   };
+
+  //TOASTS
+
+  const selectContent = () =>
+    toast.error('Select Movies or Series', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  const tooManyMovies = () =>
+    toast.error('You can only select up to 4 Movies at a time!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  const tooManySeries = () =>
+    toast.error('You can only select up to 4 Series at a time!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+
   return (
     <>
-       
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {!RecommendationsView && (
         <Search
           onChange={fetchSearch}
@@ -197,6 +246,12 @@ export default function Home() {
           setSeriesRecommendations={setSeriesRecommendations}
         />
       )}
+      <Footer />
+      <style jsx>{`
+        .Toastify__toast-container {
+          color: #e74c3c !important;
+        }
+      `}</style>
     </>
   );
 }
