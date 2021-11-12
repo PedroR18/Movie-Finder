@@ -1,20 +1,13 @@
+import SwitchButton from './SwitchButton';
+
 export default function Search(props) {
   return (
     <div className={'searchWrapper'}>
-      {/* <div className={'switchContainer'}>
-        <button
-          className={props.contentType ? 'activeMoviesButton' : 'moviesButton'}
-          onClick={() => props.toggleContent(true)}
-        >
-          Movies
-        </button>
-        <button
-          className={props.contentType ? 'seriesButton' : 'activeSeriesButton'}
-          onClick={() => props.toggleContent(false)}
-        >
-          TV Series
-        </button>
-      </div> */}
+      <SwitchButton
+        contentType={props.contentType}
+        toggleContent={props.toggleContent}
+      />
+
       <div className={'searchContainer'}>
         <input
           onChange={props.onChange}
@@ -25,8 +18,8 @@ export default function Search(props) {
       <style jsx>{`
         .searchWrapper {
           display: flex;
-          flex-direction: column;
-          justify-content: center;
+          flex-direction: row;
+          justify-content: space-around;
           align-items: center;
           width: 70%;
           margin: 0 auto;
@@ -38,6 +31,7 @@ export default function Search(props) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
         }
 
         .searchBar {

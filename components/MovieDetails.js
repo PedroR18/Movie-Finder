@@ -65,6 +65,15 @@ export default function MovieDetails({ id, contentType }) {
   const [video, setVideo] = useState([]);
   const [cast, setCast] = useState([]);
 
+  let rating;
+  if (String(Math.round(content.vote_average * 10) / 10).length === 1) {
+    if (String(Math.round(content.vote_average * 10) / 10) === '0') {
+      rating = '1.0';
+    } else rating = `${Math.round(content.vote_average * 10) / 10}.0`;
+  } else {
+    rating = Math.round(content.vote_average * 10) / 10;
+  }
+
   return (
     <>
       {content.length !== 0 && (
@@ -97,16 +106,12 @@ export default function MovieDetails({ id, contentType }) {
                   <h3>{utilities.timeConvert(content.runtime)}</h3>
                 )}
 
-                {!contentType && (
-                  <div>
-                    <h3>Episodes: {content.number_of_episodes}</h3>
-                    <h3>Seasons: {content.number_of_seasons}</h3>
-                  </div>
-                )}
-
                 <div className={'ratingWrapper'}>
-                  <Rating rating={content.vote_average} />
+                  <Rating rating={rating} />
                 </div>
+
+                {!contentType && <p>Seasons: {content.number_of_seasons}</p>}
+                {!contentType && <p>Episodes: {content.number_of_episodes}</p>}
 
                 {contentType && (
                   <a

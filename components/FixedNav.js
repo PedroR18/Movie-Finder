@@ -155,9 +155,8 @@ export default function FixedNav({
           opacity: 0.94;
           content: 'Search';
           line-height: 70px;
-          text-indent: 30px;
-          font-size: 1.2em;
-          letter-spacing: 0.2em;
+          text-indent: 35px;
+          font-size: 1.1em;
         }
 
         .resultsWrapper a:hover {
