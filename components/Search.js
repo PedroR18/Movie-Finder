@@ -18,8 +18,8 @@ export default function Search(props) {
       <style jsx>{`
         .searchWrapper {
           display: flex;
-          flex-direction: row;
-          justify-content: space-around;
+          flex-direction: column;
+          justify-content: center;
           align-items: center;
           width: 70%;
           margin: 0 auto;

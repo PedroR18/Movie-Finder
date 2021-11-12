@@ -228,7 +228,7 @@ export default function Recommendations({
             content: 'Back';
             line-height: 70px;
             text-indent: 38px;
-            font-size: 1.3em;
+            font-size: 1.1em;
             letter-spacing: 0.2em;
           }
 
