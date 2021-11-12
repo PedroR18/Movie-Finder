@@ -227,8 +227,10 @@ export default function Recommendations({
             opacity: 0.89;
             content: 'Back';
             line-height: 70px;
-            text-indent: 31px;
-            font-size: 1.4em;
+            text-indent: 38px;
+            font-family: 'Bebas Neue';
+            font-size: 1.3em;
+            letter-spacing: 0.2em;
           }
 
           .backButton:hover {

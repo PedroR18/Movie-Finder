@@ -156,14 +156,15 @@ export default function FixedNav({
           content: 'Search';
           line-height: 70px;
           text-indent: 40px;
-          font-family: 'Fira Sans';
-          font-size: 1.2em;
+          font-family: 'Bebas Neue';
+          font-size: 1.3em;
+          letter-spacing: 0.2em;
         }
 
         .resultsWrapper a:hover {
           color: black;
-          font-size: 1.25em;
-          text-indent: 30px;
+          font-size: 1.1em;
+          text-indent: 20px;
         }
 
         .favWrapper {
@@ -245,12 +246,9 @@ export default function FixedNav({
           flex-direction: column;
           justify-content: end;
           align-items: center;
-          width: 350px;
-          height: 600px;
           padding: 15px 5px;
-          right: -25%;
-          top: 55%;
-          transform: translate(-50%, -50%);
+          top: 35%;
+          left: 60%;
         }
 
         .hidden {
@@ -286,44 +284,67 @@ export default function FixedNav({
 
         @media screen and (min-width: 600px) {
           .favModal {
-            right: -20%;
-          }
-        }
-
-        @media screen and (min-width: 800px) {
-          .favModal {
-            right: -15%;
+            left: 65%;
           }
         }
 
         @media screen and (min-width: 900px) {
           .favModal {
-            right: -10%;
+            left: 70%;
           }
         }
 
-        @media screen and (min-width: 1000px) {
+        @media screen and (min-width: 1300px) {
           .favModal {
-            right: -5%;
+            left: 75%;
           }
         }
 
-        @media screen and (min-width: 1200px) {
+        @media screen and (max-height: 950px) {
           .favModal {
-            right: -10%;
-            top: 40%;
+            top: 33%;
           }
         }
 
-        @media screen and (min-width: 1500px) {
+        @media screen and (max-height: 900px) {
           .favModal {
-            right: 5%;
+            top: 30%;
           }
         }
 
-        @media screen and (min-width: 2000px) {
+        @media screen and (max-height: 870px) {
           .favModal {
-            right: 10%;
+            top: 26%;
+          }
+        }
+
+        @media screen and (max-height: 800px) {
+          .favModal {
+            top: 23%;
+          }
+        }
+
+        @media screen and (max-height: 750px) {
+          .favModal {
+            top: 19%;
+          }
+        }
+
+        @media screen and (max-height: 700px) {
+          .favModal {
+            top: 13%;
+          }
+        }
+
+        @media screen and (max-height: 650px) {
+          .favModal {
+            top: 8%;
+          }
+        }
+
+        @media screen and (max-height: 625px) {
+          .favModal {
+            top: 4%;
           }
         }
       `}</style>
