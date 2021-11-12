@@ -29,7 +29,9 @@ export default function FixedNav({
             ((favSeries.length && favSeries.length !== 0) ||
               (!!favSeries.size && favSeries.size !== 0)))) && (
           <div className={'resultsWrapper'}>
-            <a onClick={generateRecommendations} className={'results'}></a>
+            <a onClick={generateRecommendations} className={'results'}>
+              Search
+            </a>
           </div>
         )}
       {!RecommendationsView &&
@@ -59,15 +61,17 @@ export default function FixedNav({
                     {favMovies.length || favMovies.size}
                   </span>
                 )}
+              {!contentType &&
+                favSeries &&
+                (favSeries.size !== 0 || favSeries.size !== 0) && (
+                  <span
+                    className={'favCounter'}
+                    onClick={toggleModalVisibility}
+                  >
+                    {favSeries.length || favSeries.size}
+                  </span>
+                )}
             </div>
-
-            {!contentType &&
-              favSeries &&
-              (favSeries.size !== 0 || favSeries.size !== 0) && (
-                <span className={'favCounter'} onClick={toggleModalVisibility}>
-                  {favSeries.length || favSeries.size}
-                </span>
-              )}
           </div>
         )}
 
@@ -112,57 +116,17 @@ export default function FixedNav({
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
-          background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
-          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          width: 130px;
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=2253E7');
           height: 70px;
-          animation: morph 3s linear infinite;
-          transform-style: preserve-3d;
-          outline: 1px solid transparent;
-          will-change: border-radius;
-          transition: ease-in 0.4s;
-        }
-
-        .resultsWrapper a:before,
-        .resultsWrapper a:after {
-          content: '';
-          width: 100%;
-          height: 100%;
-          display: block;
-          position: absolute;
-          left: 0;
-          top: 0;
-          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
-          will-change: border-radius, transform, opacity;
-          animation-delay: 200ms;
-          background-image: linear-gradient(
-            120deg,
-            rgba(0, 67, 255, 0.55) 0%,
-            rgba(0, 103, 255, 0.89) 100%
-          );
-        }
-
-        .resultsWrapper a:before {
-          animation: morph 3s linear infinite;
-          opacity: 0.21;
-          animation-duration: 1.5s;
-        }
-
-        .resultsWrapper a:after {
-          animation: morph 3s linear infinite;
-          animation-delay: 400ms;
-          opacity: 0.94;
-          content: 'Search';
-          line-height: 70px;
-          text-indent: 35px;
-          font-size: 1.1em;
+          width: 200px;
+          text-align: center;
+          font-size: 1.5em;
+          padding-top: 20px;
+          transition: ease-in 0.1s;
         }
 
         .resultsWrapper a:hover {
-          color: black;
-          font-size: 1.1em;
-          text-indent: 20px;
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=883FEE');
         }
 
         .favWrapper {
@@ -178,49 +142,17 @@ export default function FixedNav({
           cursor: pointer;
           position: relative;
           top: 40%;
-          background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
-          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=2253E7');
           width: 50px;
           height: 50px;
-          animation: morph 3s linear infinite;
-          transform-style: preserve-3d;
-          outline: 1px solid transparent;
-          will-change: border-radius;
-          transition: ease-in 0.4s;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: ease-in 0.1s;
         }
 
-        .favMenu a:before,
-        .favMenu a:after {
-          content: '';
-          width: 100%;
-          height: 100%;
-          display: block;
-          position: absolute;
-          left: 0;
-          top: 0;
-          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
-          will-change: border-radius, transform, opacity;
-          animation-delay: 200ms;
-          background-image: linear-gradient(
-            120deg,
-            rgba(0, 67, 255, 0.55) 0%,
-            rgba(0, 103, 255, 0.89) 100%
-          );
-        }
-
-        .favMenu a:before {
-          animation: morph 3s linear infinite;
-          opacity: 0.21;
-          animation-duration: 1.5s;
-        }
-
-        .favWrapper span {
-          cursor: pointer;
-          position: relative;
-          top: 10px;
-          left: 20px;
-          font-size: 1.2em;
+        .favMenu:hover {
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=883FEE');
         }
 
         .modalWrapper {
@@ -252,33 +184,6 @@ export default function FixedNav({
 
         .hidden {
           visibility: hidden;
-        }
-
-        @keyframes morph {
-          0%,
-          100% {
-            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-            transform: translate3d(0, 0, 0) rotateZ(0.01deg);
-          }
-          34% {
-            border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
-            transform: translate3d(0, 5px, 0) rotateZ(0.01deg);
-          }
-          50% {
-            opacity: 0.89;
-            transform: translate3d(0, 0, 0) rotateZ(0.01deg);
-          }
-          67% {
-            border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-            transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
-          }
-        }
-
-        @keyframes fadeIn {
-          100% {
-            transform: scale(1.03);
-            opacity: 0;
-          }
         }
 
         @media screen and (min-width: 600px) {

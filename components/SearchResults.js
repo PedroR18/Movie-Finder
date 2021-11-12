@@ -43,7 +43,7 @@ export default function SearchResults({
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
-            margin: 10px 0;
+            margin: 20px 0;
           }
 
           .resultsFav {

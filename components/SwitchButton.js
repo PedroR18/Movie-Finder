@@ -28,7 +28,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
           letter-spacing: 0.8em;
           font-size: 2em;
           font-family: 'Teko';
-          transition: ease-in 0.3s;
+          transition: ease-in 0.2s;
         }
 
         .selected {
