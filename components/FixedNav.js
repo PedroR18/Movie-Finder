@@ -155,9 +155,8 @@ export default function FixedNav({
           opacity: 0.94;
           content: 'Search';
           line-height: 70px;
-          text-indent: 40px;
-          font-family: 'Bebas Neue';
-          font-size: 1.3em;
+          text-indent: 30px;
+          font-size: 1.2em;
           letter-spacing: 0.2em;
         }
 

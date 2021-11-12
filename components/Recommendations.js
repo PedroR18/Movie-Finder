@@ -228,7 +228,6 @@ export default function Recommendations({
             content: 'Back';
             line-height: 70px;
             text-indent: 38px;
-            font-family: 'Bebas Neue';
             font-size: 1.3em;
             letter-spacing: 0.2em;
           }
