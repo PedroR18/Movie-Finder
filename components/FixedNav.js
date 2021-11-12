@@ -248,7 +248,8 @@ export default function FixedNav({
           align-items: center;
           padding: 15px 5px;
           top: 35%;
-          left: 60%;
+          right: 5%;
+          height: 500px;
         }
 
         .hidden {
@@ -284,55 +285,67 @@ export default function FixedNav({
 
         @media screen and (min-width: 600px) {
           .favModal {
-            left: 65%;
+            right: 10%;
           }
         }
 
         @media screen and (min-width: 900px) {
           .favModal {
-            left: 70%;
+            right: 15%;
           }
         }
 
         @media screen and (min-width: 1300px) {
           .favModal {
-            left: 75%;
+            right: 17%;
           }
         }
 
-        @media screen and (max-height: 950px) {
-          .favModal {
-            top: 33%;
-          }
-        }
-
-        @media screen and (max-height: 900px) {
+        @media screen and (max-height: 960px) {
           .favModal {
             top: 30%;
           }
         }
 
-        @media screen and (max-height: 870px) {
+        @media screen and (max-height: 880px) {
           .favModal {
-            top: 26%;
+            top: 27%;
+          }
+        }
+
+        @media screen and (max-height: 840px) {
+          .favModal {
+            top: 25%;
           }
         }
 
         @media screen and (max-height: 800px) {
           .favModal {
-            top: 23%;
+            top: 22%;
           }
         }
 
-        @media screen and (max-height: 750px) {
+        @media screen and (max-height: 760px) {
           .favModal {
-            top: 19%;
+            top: 20%;
+          }
+        }
+
+        @media screen and (max-height: 730px) {
+          .favModal {
+            top: 17%;
           }
         }
 
         @media screen and (max-height: 700px) {
           .favModal {
-            top: 13%;
+            top: 15%;
+          }
+        }
+
+        @media screen and (max-height: 680px) {
+          .favModal {
+            top: 12%;
           }
         }
 
@@ -342,9 +355,9 @@ export default function FixedNav({
           }
         }
 
-        @media screen and (max-height: 625px) {
+        @media screen and (max-height: 600px) {
           .favModal {
-            top: 4%;
+            top: 0%;
           }
         }
       `}</style>
