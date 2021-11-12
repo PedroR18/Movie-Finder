@@ -1,23 +1,25 @@
 export default function SwitchButton({ contentType, toggleContent }) {
   return (
     <>
-      {contentType && (
-        <div onClick={() => toggleContent(false)} className={'container'}>
-          <span className={'text'}>MOVIES</span>
+      <div className={'container'}>
+        <div onClick={() => toggleContent(true)} className={'button'}>
+          <span className={contentType ? 'text selected' : 'text noSelected'}>
+            MOVIES
+          </span>
         </div>
-      )}
 
-      {!contentType && (
-        <div onClick={() => toggleContent(true)} className={'container'}>
-          <span className={'text'}>SERIES</span>
+        <div onClick={() => toggleContent(false)} className={'button'}>
+          <span className={!contentType ? 'text selected' : 'text noSelected'}>
+            SERIES
+          </span>
         </div>
-      )}
+      </div>
       <style jsx>{`
         .container {
           position: fixed;
           z-index: 100;
           right: 20px;
-          top: 5%;
+          top: 11%;
           cursor: pointer;
         }
 
@@ -26,11 +28,19 @@ export default function SwitchButton({ contentType, toggleContent }) {
           letter-spacing: 0.8em;
           font-size: 2em;
           font-family: 'Teko';
+          transition: ease-in 0.3s;
+        }
+
+        .selected {
           background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-2&color=2253E7');
         }
 
-        .text:hover {
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-2&color=883FEE');
+        .noSelected:hover {
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=883FEE');
+        }
+
+        .button {
+          margin-bottom: 40px;
         }
       `}</style>
     </>
