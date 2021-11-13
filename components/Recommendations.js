@@ -190,9 +190,11 @@ export default function Recommendations({
             transition: ease-in 0.1s;
             cursor: pointer;
             background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=2253E7');
+            background-size: 100% 100% !important;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0 auto;
           }
 
           .backButton:hover {

@@ -130,9 +130,10 @@ export default function MovieDetails({ id, contentType }) {
                 )}
               </div>
               <div className={'genres'}>
-                {content.genres.map((genre) => (
-                  <p key={genre.id}>{genre.name}</p>
-                ))}
+                <p key={content.genres[0].id}>{content.genres[0].name}</p>
+                {content.genres[1] && (
+                  <p key={content.genres[1].id}>{content.genres[1].name}</p>
+                )}
               </div>
             </div>
           </div>
@@ -213,6 +214,8 @@ export default function MovieDetails({ id, contentType }) {
 
         .title {
           margin: 0.3em 0;
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=0D1118');
+          background-size: 100% 100% !important;
         }
 
         .subContent {

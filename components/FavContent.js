@@ -68,6 +68,7 @@ export default function FavContent({
           width: 150px;
           height: 74px;
           background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=883FEE');
+          background-size: 100% 100% !important;
         }
       `}</style>
     </>

@@ -149,10 +149,12 @@ export default function FixedNav({
           justify-content: center;
           align-items: center;
           transition: ease-in 0.1s;
+          background-size: 100% 100% !important;
         }
 
         .favMenu:hover {
           background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=883FEE');
+          background-size: 100% 100% !important;
         }
 
         .modalWrapper {

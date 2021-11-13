@@ -69,6 +69,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
 
         .background {
           background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=ffffff');
+          background-size: 100% 100% !important;
           background-position: right 30px;
         }
 
@@ -84,10 +85,12 @@ export default function SwitchButton({ contentType, toggleContent }) {
 
         .selected {
           background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-2&color=2253E7');
+          background-size: 100% 100% !important;
         }
 
         .noSelected:hover {
           background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=883FEE');
+          background-size: 100% 100% !important;
         }
 
         .button {
@@ -149,7 +152,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
           }
           .text {
             color: white;
-            font-size: 2.3em;
+            font-size: 2.7em;
           }
 
           .button {
@@ -158,13 +161,25 @@ export default function SwitchButton({ contentType, toggleContent }) {
           }
 
           .navContainer {
+            right: 30px;
+          }
+        }
+
+        @media screen and (min-width: 1200px) {
+          .navContainer {
+            right: 40px;
+          }
+        }
+
+        @media screen and (min-width: 1500px) {
+          .navContainer {
             right: 50px;
           }
         }
 
         @media screen and (min-width: 1600px) {
           .text {
-            font-size: 2.5em;
+            font-size: 3em;
           }
 
           .navContainer {
@@ -174,11 +189,11 @@ export default function SwitchButton({ contentType, toggleContent }) {
 
         @media screen and (min-width: 2000px) {
           .text {
-            font-size: 3em;
+            font-size: 3.3em;
           }
 
           .navContainer {
-            right: 70px;
+            right: 60px;
           }
         }
       `}</style>
