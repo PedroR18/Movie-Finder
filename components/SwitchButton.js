@@ -66,7 +66,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
         .navContainer {
           position: fixed;
           z-index: 100;
-          right: 15px;
+          right: 10px;
           top: 20px;
           display: flex;
           flex-direction: column;
@@ -107,6 +107,18 @@ export default function SwitchButton({ contentType, toggleContent }) {
         .button {
           transition: ease-in 0.2s;
           opacity: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+
+        .buttonsContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
 
         .burger {
