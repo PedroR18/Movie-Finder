@@ -46,11 +46,17 @@ export default function FavContent({
           align-items: center;
           text-align: center;
           margin: 10px;
+          width: 200px;
+          height: 80px;
+          background-color: white;
+          border-radius: 40px;
+          text-shadow: 0px 0px 18px rgb(150, 170, 150);
         }
         .favContent p {
           width: 50%;
           z-index: 5;
           font-size: 0.8em;
+          color: black;
         }
 
         .favContent button {
@@ -60,15 +66,6 @@ export default function FavContent({
           cursor: pointer;
           font-size: 1.5em;
           color: red;
-        }
-
-        @import url('https://fonts.googleapis.com/css?family=Exo+2');
-
-        .favContent {
-          width: 150px;
-          height: 74px;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=883FEE');
-          background-size: 100% 100% !important;
         }
       `}</style>
     </>

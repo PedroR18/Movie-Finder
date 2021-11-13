@@ -166,7 +166,7 @@ export default function MovieDetails({ id, contentType }) {
                 cast.map((actor) => {
                   if (actor.profile_path) {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={actor.id}>
                         <div key={actor.id} className={'actor'}>
                           <div className={'actorImage'}>
                             <Image
@@ -214,8 +214,6 @@ export default function MovieDetails({ id, contentType }) {
 
         .title {
           margin: 0.3em 0;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=0D1118');
-          background-size: 100% 100% !important;
         }
 
         .subContent {

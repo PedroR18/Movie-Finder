@@ -30,6 +30,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
               toggleContent(true);
               setMenuClasses('button hidden');
               setContainerClasses('navContainer');
+              window.scrollTo(0, 0);
             }}
             className={menuClasses}
           >
@@ -47,6 +48,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
               toggleContent(false);
               setMenuClasses('button hidden');
               setContainerClasses('navContainer');
+              window.scrollTo(0, 0);
             }}
             className={menuClasses}
           >
@@ -66,7 +68,6 @@ export default function SwitchButton({ contentType, toggleContent }) {
           z-index: 100;
           right: 15px;
           top: 20px;
-
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -74,40 +75,42 @@ export default function SwitchButton({ contentType, toggleContent }) {
         }
 
         .background {
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=ffffff');
-          background-size: 100% 100% !important;
-          background-position: right 30px;
+          background-color: white;
+          border-radius: 40px;
+          transition: ease-in-out 0.3s;
         }
 
         .text {
-          writing-mode: vertical-rl;
+          writing-mode: vertical-lr;
           letter-spacing: 0.9em;
           font-size: 1.7em;
-          font-family: 'Teko';
+          font-family: 'Teko', sans-serif;
           transition: ease-in 0.2s;
-          color: black;
-          text-shadow: 0px 0px 18px rgb(150, 170, 150);
-        }
-
-        .selected {
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-2&color=2253E7');
-          background-size: 100% 100% !important;
-        }
-
-        .noSelected:hover {
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=883FEE');
-          background-size: 100% 100% !important;
-        }
-
-        .button {
-          margin-bottom: 50px;
-          transition: ease-in 0.2s;
-          opacity: 1;
+          padding: 0 5px;
+          padding-top: 20px;
           cursor: pointer;
         }
 
+        .selected {
+          background-color: rgb(25, 36, 49);
+          border-radius: 40px;
+        }
+
+        .noSelected {
+          color: black;
+        }
+
+        .noSelected:hover {
+          opacity: 1 !important;
+        }
+
+        .button {
+          transition: ease-in 0.2s;
+          opacity: 1;
+        }
+
         .burger {
-          margin-bottom: 70px;
+          margin-bottom: 10px;
           height: 55px;
           width: 55px;
           display: flex;

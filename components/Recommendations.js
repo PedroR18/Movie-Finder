@@ -189,16 +189,28 @@ export default function Recommendations({
             height: 74px;
             transition: ease-in 0.1s;
             cursor: pointer;
-            background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=2253E7');
-            background-size: 100% 100% !important;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 auto;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgb(150, 170, 150);
+            border-radius: 40px;
+          }
+
+          .backButton span {
+            color: black;
+            font-size: 1.5em;
           }
 
           .backButton:hover {
-            background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=883FEE');
+            background-color: rgb(25, 36, 49);
+            transform: scale(1.04);
+            box-shadow: 0px 0px 10px rgb(50, 50, 50);
+          }
+
+          .backButton:hover .backButton span {
+            color: white;
           }
 
           @media screen and (min-width: 600px) {

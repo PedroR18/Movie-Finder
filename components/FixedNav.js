@@ -112,22 +112,24 @@ export default function FixedNav({
           z-index: 1;
         }
         .resultsWrapper a {
-          padding: 15px 40px;
+          padding: 15px 30px;
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=ffffff');
-          height: 70px;
-          width: 200px;
           text-align: center;
-          font-size: 1.5em;
-          padding-top: 20px;
+          font-size: 1.7em;
+          font-weight: bold;
           transition: ease-in 0.1s;
           color: black;
+          background-color: white;
+          box-shadow: 0px 0px 10px rgb(150, 170, 150);
         }
 
         .resultsWrapper a:hover {
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=883FEE');
+          color: white;
+          background-color: rgb(25, 36, 49);
+          transform: scale(1.04);
+          box-shadow: 0px 0px 10px rgb(50, 50, 50);
         }
 
         .favWrapper {
@@ -143,19 +145,25 @@ export default function FixedNav({
           cursor: pointer;
           position: relative;
           top: 40%;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=ffffff');
           width: 50px;
           height: 50px;
           display: flex;
           justify-content: center;
           align-items: center;
           transition: ease-in 0.1s;
-          background-size: 100% 100% !important;
+          background-color: white;
+          border-radius: 40px;
+          box-shadow: 0px 0px 10px rgb(150, 170, 150);
         }
 
         .favMenu:hover {
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=883FEE');
-          background-size: 100% 100% !important;
+          background-color: rgb(25, 36, 49);
+          transform: scale(1.04);
+          box-shadow: 0px 0px 10px rgb(50, 50, 50);
+        }
+
+        .favMenu:hover .favCounter {
+          color: white;
         }
 
         .modalWrapper {
