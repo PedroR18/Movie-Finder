@@ -116,7 +116,7 @@ export default function FixedNav({
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=8CA0D7');
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=ffffff');
           height: 70px;
           width: 200px;
           text-align: center;
