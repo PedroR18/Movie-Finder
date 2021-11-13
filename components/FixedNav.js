@@ -116,13 +116,14 @@ export default function FixedNav({
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=2253E7');
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=8CA0D7');
           height: 70px;
           width: 200px;
           text-align: center;
           font-size: 1.5em;
           padding-top: 20px;
           transition: ease-in 0.1s;
+          color: black;
         }
 
         .resultsWrapper a:hover {
@@ -142,7 +143,7 @@ export default function FixedNav({
           cursor: pointer;
           position: relative;
           top: 40%;
-          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=2253E7');
+          background: url('//s2.svgbox.net/pen-brushes.svg?ic=brush-3&color=ffffff');
           width: 50px;
           height: 50px;
           display: flex;
@@ -186,6 +187,10 @@ export default function FixedNav({
 
         .hidden {
           visibility: hidden;
+        }
+
+        .favCounter {
+          color: black;
         }
 
         @media screen and (min-width: 600px) {

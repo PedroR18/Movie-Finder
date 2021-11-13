@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 export default function SwitchButton({ contentType, toggleContent }) {
-  const [menuClasses, setMenuClasses] = useState('button');
+  const [menuClasses, setMenuClasses] = useState('button hidden');
   const [containerClasses, setContainerClasses] = useState('navContainer');
   const handleMenu = () => {
     menuClasses.includes('hidden')
@@ -33,7 +33,11 @@ export default function SwitchButton({ contentType, toggleContent }) {
             }}
             className={menuClasses}
           >
-            <span className={contentType ? 'text selected' : 'text noSelected'}>
+            <span
+              className={
+                contentType ? 'text selected' : 'text noSelected lowOpacity'
+              }
+            >
               MOVIES
             </span>
           </div>
@@ -47,7 +51,9 @@ export default function SwitchButton({ contentType, toggleContent }) {
             className={menuClasses}
           >
             <span
-              className={!contentType ? 'text selected' : 'text noSelected'}
+              className={
+                !contentType ? 'text selected' : 'text noSelected lowOpacity'
+              }
             >
               SERIES
             </span>
@@ -121,6 +127,10 @@ export default function SwitchButton({ contentType, toggleContent }) {
         .hidden {
           visibility: hidden;
           opacity: 0;
+        }
+
+        .lowOpacity {
+          opacity: 0.4;
         }
 
         @media screen and (min-width: 600px) {
