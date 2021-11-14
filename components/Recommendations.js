@@ -185,8 +185,8 @@ export default function Recommendations({
           }
 
           .backButton {
-            width: 130px;
-            height: 74px;
+            width: 110px;
+            height: 44px;
             transition: ease-in 0.1s;
             cursor: pointer;
             display: flex;

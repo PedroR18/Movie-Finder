@@ -59,7 +59,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
       </div>
       <style jsx>{`
         .navContainer {
-          position: fixed;
+          position: absolute;
           z-index: 100;
           right: 10px;
           top: 20px;

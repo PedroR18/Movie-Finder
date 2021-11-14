@@ -31,7 +31,6 @@ export default function Search(props) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          box-shadow: 2.5px 5px 5px hsl(0deg 0% 0% / 0.42);
         }
 
         .searchBar {
