@@ -14,12 +14,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              <Image
-                src="/../public/Tmdb.svg"
-                alt="TMDB"
-                height="24px"
-                width="24px"
-              />
+              <Image src="/Tmdb.svg" alt="TMDB" height="24px" width="24px" />
             </a>
           </div>
           <div className={'gitHub'}>
@@ -29,7 +24,7 @@ export default function Footer() {
               rel="noreferrer"
             >
               <Image
-                src="/../public/GitHub.png"
+                src="/GitHub.png"
                 alt="GitHub"
                 height="24px"
                 width="24px"

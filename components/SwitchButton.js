@@ -17,12 +17,7 @@ export default function SwitchButton({ contentType, toggleContent }) {
     <>
       <div className={containerClasses}>
         <div className={'burger'} onClick={() => handleMenu()}>
-          <Image
-            src="/../public/Menu.svg"
-            alt="Menu"
-            height="20px"
-            width="20px"
-          />
+          <Image src="/Menu.svg" alt="Menu" height="20px" width="20px" />
         </div>
         <div className={'buttonsContainer'}>
           <div

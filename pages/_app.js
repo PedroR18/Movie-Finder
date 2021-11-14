@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
-        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
 
       <Component {...pageProps} />
