@@ -5,6 +5,8 @@ function MyApp({ Component, pageProps }) {
   setTimeout(() => {
     heightValue = '100%';
   }, 1000);
+
+  console.error = function () {};
   return (
     <>
       <Head>
