@@ -14,7 +14,6 @@ export default function FavContent({
     contentType
       ? setMovieCounter(movieCounter - 1)
       : setSerieCounter(serieCounter - 1);
-    console.log(movieCounter);
     if (contentType && movieCounter <= 1) {
       setFavModalVisibility(false);
     } else if (!contentType && serieCounter <= 1) {

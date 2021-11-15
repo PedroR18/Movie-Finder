@@ -112,7 +112,7 @@ export default function FixedNav({
           z-index: 1;
         }
         .resultsWrapper a {
-          padding: 15px 30px;
+          padding: 5px 25px;
           border-radius: 40px;
           cursor: pointer;
           z-index: -1;
@@ -145,8 +145,8 @@ export default function FixedNav({
           cursor: pointer;
           position: relative;
           top: 40%;
-          width: 50px;
-          height: 50px;
+          width: 40px;
+          height: 40px;
           display: flex;
           justify-content: center;
           align-items: center;

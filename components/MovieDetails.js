@@ -131,7 +131,7 @@ export default function MovieDetails({
                     className={'imdb'}
                   >
                     <Image
-                      src="/../public/IMDB.svg"
+                      src="/IMDB.svg"
                       alt="Loading"
                       height="50px"
                       width="50px"

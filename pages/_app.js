@@ -6,7 +6,11 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Movie Finder</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
 
       <Component {...pageProps} />
