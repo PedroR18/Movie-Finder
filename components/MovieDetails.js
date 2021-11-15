@@ -10,7 +10,11 @@ import { IMG_LOADER } from '../config/config';
 import utilities from '../config/utilities';
 import Rating from './Rating';
 
-export default function MovieDetails({ id, contentType }) {
+export default function MovieDetails({
+  id,
+  contentType,
+  setDetailsModalVisibility,
+}) {
   useEffect(() => {
     const fetchDetails = async () => {
       let list;
@@ -78,6 +82,12 @@ export default function MovieDetails({ id, contentType }) {
     <>
       {content.length !== 0 && (
         <div className={'modal'}>
+          <button
+            className={'close'}
+            onClick={() => setDetailsModalVisibility(false)}
+          >
+            X
+          </button>
           <div className={'mainContent'}>
             <div className={'image'}>
               <Image
@@ -289,6 +299,24 @@ export default function MovieDetails({ id, contentType }) {
 
         .imdb:hover {
           transform: scale(1.1);
+        }
+
+        .close {
+          position: absolute;
+          top: 0;
+          right: 1%;
+          background: white;
+          border: 1px solid transparent;
+          border-radius: 50px;
+          padding: 2px 12px;
+          font-size: 2em;
+          cursor: pointer;
+          color: black;
+        }
+
+        .close:hover {
+          background-color: rgb(25, 36, 49);
+          color: white;
         }
 
         @media screen and (min-width: 1000px) {

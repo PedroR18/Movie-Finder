@@ -103,7 +103,11 @@ export default function Recommendations({
             }}
           >
             {detailsModalVisibility && (
-              <MovieDetails id={id} contentType={contentType} />
+              <MovieDetails
+                id={id}
+                contentType={contentType}
+                setDetailsModalVisibility={setDetailsModalVisibility}
+              />
             )}
           </div>
         </div>
