@@ -8,7 +8,6 @@ export default function SearchResults({
   toggleFavContent,
 }) {
   const allFav = Array.from(favMovies).concat(Array.from(favSeries));
-  console.log(searchResults);
 
   return (
     <>
