@@ -6,7 +6,6 @@ function MyApp({ Component, pageProps }) {
     heightValue = '100%';
   }, 1000);
 
-  console.error = function () {};
   return (
     <>
       <Head>

@@ -8,12 +8,13 @@ export default function SearchResults({
   toggleFavContent,
 }) {
   const allFav = Array.from(favMovies).concat(Array.from(favSeries));
+  console.log(searchResults);
 
   return (
     <>
       <div className={'resultsWrapper'}>
         <div className={'resultsGrid'}>
-          {searchResults &&
+          {searchResults.length !== 0 &&
             searchResults.map((content) => {
               if (content.poster_path) {
                 return (
