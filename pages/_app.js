@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
           content="upgrade-insecure-requests"
         />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <html lang="en" />
       </Head>
 
       <Component {...pageProps} />
