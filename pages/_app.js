@@ -1,11 +1,6 @@
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
-  let heightValue = '100vh';
-  setTimeout(() => {
-    heightValue = '100%';
-  }, 1000);
-
   return (
     <>
       <Head>
@@ -22,7 +17,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <style jsx global>{`
         body {
-          height: ${heightValue};
+          height: ${window.innerHeight};
           overflow: overlay;
           background: radial-gradient(
             ellipse at bottom,

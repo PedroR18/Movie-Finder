@@ -196,7 +196,7 @@ export default function Recommendations({
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto;
+            margin: 30px auto;
             background-color: white;
             box-shadow: 0px 0px 10px rgb(150, 170, 150);
             border-radius: 40px;
